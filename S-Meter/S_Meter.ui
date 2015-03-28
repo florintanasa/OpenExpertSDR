@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>S_MeterClass</class>
+ <widget class="QWidget" name="S_MeterClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>202</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>300</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>S_Meter</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-4</y>
+     <width>300</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../images.qrc">:/images/S-Meter.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbSql">
+   <property name="geometry">
+    <rect>
+     <x>184</x>
+     <y>176</y>
+     <width>52</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>55</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     border: 1px solid #5c5c5c;
+	border-color: rgb(245, 245, 245);
+     border-radius: 10px;
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0  rgba(104, 104, 104, 100) , stop: 1  rgba(49, 49, 49, 100) );	
+	color: rgb(255, 255, 255);
+ }
+
+ QPushButton:hover {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ }
+
+ QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+ }
+
+QPushButton::checked {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+}</string>
+   </property>
+   <property name="text">
+    <string>Sql</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbMute">
+   <property name="geometry">
+    <rect>
+     <x>242</x>
+     <y>176</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>50</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     border: 1px solid #5c5c5c;
+	border-color: rgb(245, 245, 245);
+     border-radius: 10px;
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0  rgba(104, 104, 104, 100) , stop: 1  rgba(49, 49, 49, 100) );	
+	color: rgb(255, 255, 255);
+ }
+
+ QPushButton:hover {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ }
+
+ QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+ }
+
+QPushButton::checked {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+}</string>
+   </property>
+   <property name="text">
+    <string>Mute</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbMode">
+   <property name="geometry">
+    <rect>
+     <x>63</x>
+     <y>176</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>50</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     border: 1px solid #5c5c5c;
+	border-color: rgb(245, 245, 245);
+     border-radius: 10px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0  rgba(104, 104, 104, 100) , stop: 1  rgba(49, 49, 49, 100) );	
+	color: rgb(255, 255, 255);
+ }
+
+ QPushButton:hover {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ }
+
+ QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+ }
+
+QPushButton::checked {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+}</string>
+   </property>
+   <property name="text">
+    <string>LSB</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbBand">
+   <property name="geometry">
+    <rect>
+     <x>6</x>
+     <y>176</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>50</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     border: 1px solid #5c5c5c;
+	border-color: rgb(245, 245, 245);
+     border-radius: 10px;
+      background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0  rgba(104, 104, 104, 100) , stop: 1  rgba(49, 49, 49, 100) );
+
+	
+	color: rgb(255, 255, 255);
+ }
+
+ QPushButton:hover {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ }
+
+ QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+ }
+
+QPushButton::checked {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+}
+
+ QMenu {
+     
+	background-color: rgba(26, 26, 26, 50);
+     margin: 2px;
+ }</string>
+   </property>
+   <property name="text">
+    <string>160M</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbClose">
+   <property name="geometry">
+    <rect>
+     <x>272</x>
+     <y>8</y>
+     <width>22</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>50</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     border: 1px solid #5c5c5c;
+	border-color: rgb(245, 245, 245);
+     border-radius: 10px;
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0  rgba(104, 104, 104, 100) , stop: 1  rgba(49, 49, 49, 100) );	
+	color: rgb(255, 255, 255);
+ }
+
+ QPushButton:hover {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ }
+
+ QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+ }
+
+QPushButton::checked {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+}</string>
+   </property>
+   <property name="text">
+    <string>X</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdgDraw" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-1</y>
+     <width>300</width>
+     <height>120</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>300</width>
+     <height>120</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>300</width>
+     <height>120</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>123</y>
+     <width>20</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+     min-heigght: 10px;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+    border: 0px solid #5c5c5c;
+	border-color: transparent;
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+   <property name="text">
+    <string>.</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg8" native="true">
+   <property name="geometry">
+    <rect>
+     <x>56</x>
+     <y>122</y>
+     <width>21</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg7" native="true">
+   <property name="geometry">
+    <rect>
+     <x>78</x>
+     <y>122</y>
+     <width>21</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg6" native="true">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>122</y>
+     <width>21</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg5" native="true">
+   <property name="geometry">
+    <rect>
+     <x>129</x>
+     <y>121</y>
+     <width>21</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg4" native="true">
+   <property name="geometry">
+    <rect>
+     <x>151</x>
+     <y>121</y>
+     <width>21</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg3" native="true">
+   <property name="geometry">
+    <rect>
+     <x>173</x>
+     <y>121</y>
+     <width>21</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>21</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>195</x>
+     <y>130</y>
+     <width>16</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>16</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg1" native="true">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>130</y>
+     <width>16</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>16</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="wdg0" native="true">
+   <property name="geometry">
+    <rect>
+     <x>229</x>
+     <y>130</y>
+     <width>16</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>16</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16</width>
+     <height>23</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+	background-color: rgba(255, 255, 255, 0);
+     min-width: 10px;
+ border: 0px solid #5c5c5c;
+	border-color: transparent;
+	
+	color: rgb(42, 255, 241);
+	font: 26pt &quot;MS Shell Dlg 2&quot;;
+ }
+
+ QPushButton:hover {
+   
+	background-color: rgba(255, 255, 255, 0);
+     border: 1px solid #5c5c5c;
+	border-color: rgb(42, 255, 241);
+     border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+ QPushButton:pressed {
+    
+	background-color: rgba(255, 255, 255, 0);
+ }
+
+QPushButton::checked {
+ 
+	border-color: rgba(255, 255, 255, 0);
+}</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="slVolume">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>155</y>
+     <width>251</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider::groove:horizontal {
+ border: 1px solid   rgb(255, 255, 255);
+ height: 5px;
+border-radius: 3px; 
+background-color: rgba(255, 255, 255, 0);
+ margin: 0px 0;
+  }
+
+ QSlider::handle:horizontal {
+  border: 1px solid;
+	border-color: rgb(255, 255, 255);
+   width: 10px;
+border-radius: 3px; 
+   margin: -3px 0;
+    border-radius: 3px;
+	background-color: rgb(0, 0, 0);
+   }
+ QSlider::add-page:horizontal {
+ 
+  background: rgba(18, 18, 18, 0);
+ border: 0px solid   rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+margin: 1px 1;
+ }
+
+ QSlider::sub-page:horizontal {
+/* background:  rgb(59, 59, 59);*/
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ border: 0px solid   rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+margin: 1px 1;
+ }</string>
+   </property>
+   <property name="minimum">
+    <number>0</number>
+   </property>
+   <property name="maximum">
+    <number>100</number>
+   </property>
+   <property name="value">
+    <number>50</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbTranceparent">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>136</x>
+     <y>175</y>
+     <width>22</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>50</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     border: 1px solid #5c5c5c;
+	border-color: rgb(245, 245, 245);
+     border-radius: 10px;
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0  rgba(104, 104, 104, 100) , stop: 1  rgba(49, 49, 49, 100) );	
+	color: rgb(255, 255, 255);
+ }
+
+ QPushButton:hover {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #75BDF2, stop: 1 #3796DA);
+ }
+
+ QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+ }
+
+QPushButton::checked {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,  stop: 0 #1D5AAD, stop: 1 #75BDF2);
+}</string>
+   </property>
+   <property name="text">
+    <string>T</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>pbSql</zorder>
+  <zorder>pbMute</zorder>
+  <zorder>pbMode</zorder>
+  <zorder>pbBand</zorder>
+  <zorder>wdgDraw</zorder>
+  <zorder>pushButton_5</zorder>
+  <zorder>wdg8</zorder>
+  <zorder>wdg7</zorder>
+  <zorder>wdg6</zorder>
+  <zorder>wdg5</zorder>
+  <zorder>wdg4</zorder>
+  <zorder>wdg3</zorder>
+  <zorder>wdg2</zorder>
+  <zorder>wdg1</zorder>
+  <zorder>wdg0</zorder>
+  <zorder>pbClose</zorder>
+  <zorder>slVolume</zorder>
+  <zorder>pbTranceparent</zorder>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../images.qrc"/>
+  <include location="../images.qrc"/>
+  <include location="../images.qrc"/>
+  <include location="../images.qrc"/>
+  <include location="../images.qrc"/>
+  <include location="../images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pbClose</sender>
+   <signal>clicked()</signal>
+   <receiver>S_MeterClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>17</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>100</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

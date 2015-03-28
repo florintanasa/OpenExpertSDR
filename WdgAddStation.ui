@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WdgAddStationClass</class>
+ <widget class="QWidget" name="WdgAddStationClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>232</width>
+    <height>132</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Add station</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background: #494D4F;
+        border: 0px solid #383B3D;
+        color: #F9CEB8;
+}
+
+
+QPushButton { /* all types of tool button */ 
+color: #050505;
+border: 0px solid #2e3236; /*#848584;*/
+border-radius: 0px;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #e7e7e7, stop:0.45 #c8c9c9, stop:0.5 #bcbebc, stop: 1 #818382);
+}
+
+QPushButton:hover { /* all types of tool button */
+color: #050505;
+border: 1px solid #a75e16; /*#848584;*/
+border-radius: 0px;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #e7e7e7, stop:0.45 #c8c9c9, stop:0.5 #bcbebc, stop: 1 #818382);
+}
+
+QPushButton:pressed {
+background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #737372, stop:0.45 #b0b1b0, stop:0.5 #c2c1c2, stop: 1 #c2c1c2);
+color: #050505;
+border: 1px solid #2e3236;
+}
+
+QPushButton:checked {
+background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #737372, stop:0.45 #b0b1b0, stop:0.5 #c2c1c2, stop: 1 #c2c1c2);
+color: #050505;
+border: 1px solid #2e3236;
+}
+
+/* the subcontrols below are used only in the MenuButtonPopup mode */
+QPushButton::menu-button {
+border: 1px solid gray;
+border-top-right-radius: 6px;
+border-bottom-right-radius: 6px;
+/* 16px width + 4px for border = 20px allocated above */
+width: 16px;
+}
+
+QPushButton::menu-arrow {
+image: url(downarrow.png);
+}
+
+QPushButton::menu-arrow:open {
+top: 1px; left: 1px; /* shift it a bit */
+}
+
+QToolButton { /* all types of tool button */ 
+color: #A0A0A0;
+border: 1px solid #2e3236; /*#848584;*/
+border-radius: 4px;
+/*background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #e7e7e7, stop:0.45 #c8c9c9, stop:0.5 #bcbebc, stop: 1 #818382);*/
+}
+
+QToolButton[popupMode=&quot;1&quot;] { /* only for MenuButtonPopup */
+padding-right: 20px; /* make way for the popup button */
+}
+
+QToolButton:hover { /* all types of tool button */
+color: #A0A0A0;
+border: 1px solid green;
+}
+
+QToolButton:pressed {
+color: #00FF00;
+border: 1px solid #00B000;
+}
+
+QToolButton:checked {
+/*background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #737372, stop:0.45 #b0b1b0, stop:0.5 #c2c1c2, stop: 1 #c2c1c2);
+color: #050505;
+border: 1px solid #2e3236;*/
+color: #00FF00;
+border: 1px solid #00B000;
+
+}</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>10</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Comment:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Frequency:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="sbFreq">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>40</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+        background: #898D8F;
+        border: 0px solid #383B3D;
+        color: black;
+}</string>
+   </property>
+   <property name="maximum">
+    <number>1000000000</number>
+   </property>
+   <property name="value">
+    <number>7100000</number>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>70</y>
+     <width>141</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+        background: #898D8F;
+        border: 0px solid #383B3D;
+        color: black;
+}</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>LSB</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>USB</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>DSB</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CWL</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CWU</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>FMN</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>AM</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>DIGU</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SPEC</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>DIGL</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SAM</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>DRM</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Mode:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbSave">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leComment">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>10</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+        background: #898D8F;
+        border: 0px solid #383B3D;
+        color: black;
+}</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>fileListClass</class>
+ <widget class="QWidget" name="fileListClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>260</width>
+    <height>325</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>260</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>fileList</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel 
+{ 
+color: rgb(215, 215, 215); 
+} 
+
+QTimeEdit {
+        background: transparent;
+        border: 0px solid #383B3D;
+        color: rgb(215, 215, 215); 
+}
+
+QTableWidget { 
+show-decoration-selected: 1; /* make the selection span the entire width of the view */ 
+} 
+QTableWidget::item:alternate { 
+background: #EEEEEE; 
+} 
+QTableWidget::item:selected { 
+border: 1px solid #363636; 
+} 
+QTableWidget::item:selected:!active { 
+background: rgb(54, 54, 54); 
+} 
+/* Активный итем*/ 
+QTableWidget::item:selected:active { 
+background: rgb(54, 54, 54); 
+} 
+
+QScrollBar:vertical { 
+border: 1px solid black; 
+background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(60, 60, 60, 255), stop:1 rgba(50, 50, 50, 255)); 
+width: 13px;
+margin: 12px 3px 12px 3px; 
+} 
+
+QScrollBar::handle:vertical {
+	background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(60, 60, 60, 255), stop:1 rgba(137, 137, 137, 255));
+	border: 1px solid;
+	border-color: rgb(150, 150, 150);
+	border-radius: 1px;
+	min-width: 18px;
+	margin: 3px -2px 3px -2px; 
+}
+
+QScrollBar::add-line:vertical 
+{
+	background: transparent;
+	height: 11px;
+	width: 11px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+	image: url(:images/arrows/arrow-down.png);
+  }
+
+ QScrollBar::sub-line:vertical 
+{
+	background: transparent;
+	height: 11px;
+	width: 11px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+	image: url(:images/arrows/arrow-up.png);
+  }
+
+QScrollBar::up-arrow:vertical
+{
+      width: 11px;
+      height: 11px;
+  }
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+      background: none;
+  }
+
+QCheckBox {
+     spacing: 5px;
+ }
+
+ QCheckBox::indicator {
+     width: 13px;
+     height: 13px;
+ }
+
+ QCheckBox::indicator:unchecked {
+     image: url(:/images/chbNotChecked.png);
+ }
+
+ QCheckBox::indicator:unchecked:hover {
+     image: url(:/images/chbNotChecked.png);
+ }
+
+ QCheckBox::indicator:unchecked:pressed {
+     image: url(:/images/chbChecked.png);
+ }
+
+ QCheckBox::indicator:checked {
+     image: url(:/images/chbChecked.png);
+ }
+
+ QCheckBox::indicator:checked:hover {
+     image: url(:/images/chbChecked.png);
+ }
+
+ QCheckBox::indicator:checked:pressed {
+     image: url(:/images/chbChecked.png);
+ }
+
+ QCheckBox::indicator:indeterminate:hover {
+     image: url(:/images/chbChecked.png);
+ }
+
+ QCheckBox::indicator:indeterminate:pressed {
+     image: url(:/images/chbChecked.png);
+ }
+
+QSlider::groove:horizontal {
+	
+	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:0.488636 rgba(128, 128, 128, 255), stop:1 rgba(123, 123, 123, 255));
+position: absolute;
+height: 4px;
+left: 2px; right: 2px;
+border: 1px solid black;
+margin: 0px 0;
+}
+QSlider::handle:horizontal {
+image: url(:/images/slider.png);
+margin: -3px 0;
+}
+
+ QSlider::add-page:horizontal {
+     background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:0.488636 rgba(128, 128, 128, 255), stop:1 rgba(123, 123, 123, 255));
+border: 1px solid black;
+ }
+
+ QSlider::sub-page:horizontal {
+background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #f4d4b4, stop:0.45 #b77738, stop:0.5 #a7601b, stop: 1 #884d12);
+	 border: 1px solid black;
+ }
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>1</number>
+   </property>
+   <property name="leftMargin">
+    <number>3</number>
+   </property>
+   <property name="topMargin">
+    <number>3</number>
+   </property>
+   <property name="rightMargin">
+    <number>3</number>
+   </property>
+   <property name="bottomMargin">
+    <number>3</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>1</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pbRec">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Record IQ Wave file</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Rec</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbPlay">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Play IQ Wave file</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Play</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbPause">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>35</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>35</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Pause</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Pause</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbStop">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Stop</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbBack">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Rewind</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbLoop">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Loop</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbAddFile">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbDelFile">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>18</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Del</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line_2">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>4</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget { 
+	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(33, 33, 33, 255), stop:0.5 rgba(65, 65, 65, 255), stop:0.943182 rgba(33, 33, 33, 255));
+border: 0px solid #124159;
+color: #E5E5E5;
+}
+</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <property name="leftMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QSlider" name="slIqTrack">
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="tracking">
+        <bool>false</bool>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTimeEdit" name="teIqTime">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
+       <property name="wrapping">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>false</bool>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::NoButtons</enum>
+       </property>
+       <property name="accelerated">
+        <bool>false</bool>
+       </property>
+       <property name="correctionMode">
+        <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+       </property>
+       <property name="keyboardTracking">
+        <bool>true</bool>
+       </property>
+       <property name="displayFormat">
+        <string>HH:mm:ss</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>4</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget { 
+	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(33, 33, 33, 255), stop:0.5 rgba(65, 65, 65, 255), stop:0.943182 rgba(33, 33, 33, 255));
+border: 0px solid #124159;
+color: #E5E5E5;
+}
+</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="twList">
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::AllEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="showGrid">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
