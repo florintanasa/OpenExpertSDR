@@ -7030,7 +7030,7 @@ void ExpertSDR_vA2_1::setLockIsPlay(bool state)
             connect(pMem, SIGNAL(FreqMem(int, int)), this, SLOT(OnChangeMainFreqWithWdgMem(int, int)));
             return;
         }
-        int cb_idx = pMem->sampleRateIndex() - 1;
+        int cb_idx = pMem->sampleRateIndex();
         pOpt->ui.cbPaSampleRate->setCurrentIndex(cb_idx);
         disconnect(pMem, SIGNAL(FreqMem(int, int)), this, SLOT(OnChangeMainFreqWithWdgMem(int, int)));
         if(UpdatesTimerID == 0)
