@@ -436,33 +436,33 @@ void DspCallBack(const void *In, void *Out, unsigned long FrameCount, void *User
     DttSP *pDsp = pExpSdr->pDsp;
     int DspCurrentPos = pDsp->DspCurrentPos;
     int BufPos = GetCurrentPos(pDsp->DspPos, DspCurrentPos);
-    int* ArrayPtr = (int *)Out;
+    float** ArrayPtr = (float **)Out;
     float* pOutRight;
     float* pOutLeft;
     static int cntTxDel = 0;
     if(!pExpSdr->bSwapLineOut)
     {
-        pOutLeft = (float *)ArrayPtr[0];
-        pOutRight = (float *)ArrayPtr[1];
+        pOutLeft = (float *)(ArrayPtr[0]);
+        pOutRight = (float *)(ArrayPtr[1]);
     }
     else
     {
-        pOutLeft = (float *)ArrayPtr[1];
-        pOutRight = (float *)ArrayPtr[0];
+        pOutLeft = (float *)(ArrayPtr[1]);
+        pOutRight = (float *)(ArrayPtr[0]);
     }
-    ArrayPtr = (int *)In;
+    ArrayPtr = (float **)In;
     float* pInLeft;
     float* pInRight;
 
     if(!pExpSdr->bSwapLineIn)
     {
-        pInLeft = (float *)ArrayPtr[0];
-        pInRight = (float *)ArrayPtr[1];
+        pInLeft = (float *)(ArrayPtr[0]);
+        pInRight = (float *)(ArrayPtr[1]);
     }
     else
     {
-        pInLeft = (float *)ArrayPtr[1];
-        pInRight = (float *)ArrayPtr[0];
+        pInLeft = (float *)(ArrayPtr[1]);
+        pInRight = (float *)(ArrayPtr[0]);
     }
     pDsp->DspPos++;
     if(pDsp->DspPos >= MAX_DSP_MEMORY_BUF)
@@ -659,6 +659,13 @@ void DspCallBack(const void *In, void *Out, unsigned long FrameCount, void *User
         else
         {
             pExpSdr->pMem->readIqBuf(pInLeft, pInRight, FrameCount);
+            qWarning() << "pDsp =" << pDsp << endl;
+            qWarning() << "pDsp->DspPos =" << pDsp->DspPos << endl;
+            qWarning() << "pDsp->DspCircleBuf[pDsp->DspPos][0] =" << pDsp->DspCircleBuf[pDsp->DspPos][0] << endl;
+            qWarning() << "pDsp->DspCircleBuf[pDsp->DspPos][1] =" << pDsp->DspCircleBuf[pDsp->DspPos][1] << endl;
+            qWarning() << "pInLeft =" << pInLeft << endl;
+            qWarning() << "pInRight =" << pInRight << endl;
+
             memcpy(pDsp->DspCircleBuf[pDsp->DspPos][0], pInLeft, FrameCount*sizeof(float));
             memcpy(pDsp->DspCircleBuf[pDsp->DspPos][1], pInRight, FrameCount*sizeof(float));
 
@@ -1095,7 +1102,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      pDg9->SetFontType("DS-Digital", 36);
 
       if(!pDsp->isLoad)
-    {
+     {
          QMessageBox msgBox;
          msgBox.setText(tr("Can't load DttSP lib!"));
          msgBox.exec();
@@ -1475,6 +1482,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
 
 ExpertSDR_vA2_1::~ExpertSDR_vA2_1()
 {
+    delete ui;
     delete pVfoB;
     delete pAudThr;
     delete pCalibrator;
@@ -1521,7 +1529,6 @@ ExpertSDR_vA2_1::~ExpertSDR_vA2_1()
     delete pVoiceRec;
     delete pPaVac;
     delete pVac;
- //   delete ui;
 }
 
 void ExpertSDR_vA2_1::OnSoundOptChanged()
@@ -1549,13 +1556,11 @@ void ExpertSDR_vA2_1::closeEvent(QCloseEvent *event)
     if(ui->pbStart->isChecked())
         OnStart(false);
 
-    // uncommented when I fixed funtion writeSettings
-    
- //   if(!writeSettings())
-//    {
-//        event->ignore(); // uncommented when I fixed funtion writeSettings
-//        return;
-//    }
+    if(!writeSettings())
+    {
+        event->ignore();
+        return;
+    }
 
     if(pOpt->isVisible())
         pOpt->hide();
@@ -1574,7 +1579,6 @@ void ExpertSDR_vA2_1::closeEvent(QCloseEvent *event)
     pSdrCtrl->Close();
     pPaVac->close();
 //    pPanel->onClose();
-   
 }
 
 void ExpertSDR_vA2_1::resizeEvent(QResizeEvent *event)
@@ -7026,9 +7030,7 @@ void ExpertSDR_vA2_1::setLockIsPlay(bool state)
             connect(pMem, SIGNAL(FreqMem(int, int)), this, SLOT(OnChangeMainFreqWithWdgMem(int, int)));
             return;
         }
-        //int cb_idx = pMem->sampleRateIndex() - 1;
-        int cb_idx = pMem->sampleRateIndex();
-	//int cb_idx = 0;
+        int cb_idx = pMem->sampleRateIndex() - 1;
         pOpt->ui.cbPaSampleRate->setCurrentIndex(cb_idx);
         disconnect(pMem, SIGNAL(FreqMem(int, int)), this, SLOT(OnChangeMainFreqWithWdgMem(int, int)));
         if(UpdatesTimerID == 0)
