@@ -45,10 +45,10 @@ SOURCES += main.cpp\
         CalibrateSC/progresscalibrate.cpp \
         Logger/VLogger.cpp \
         Logger/VLogger.h \
-#        CW/CwCore.cpp \
-#        CW/CwMacro.cpp \
-#        CW/CwTimer.cpp \
-#        CW/correctIQ.cpp \
+        CW/CwCore.cpp \
+        CW/CwMacro.cpp \
+        CW/CwTimer.cpp \
+        CW/correctIQ.cpp \
         ringBuf.cpp \
         About.cpp \
         AudioThread.cpp \
@@ -99,10 +99,10 @@ HEADERS  += expertsdr_va2_1.h \
             CalibrateSC/Calibrator/CalibrProc.h \
             CalibrateSC/Calibrator/Calibrator.h \
             CalibrateSC/progresscalibrate.h \
-#            CW/CwCore.h \
-#            CW/CwMacro.h \
-#            CW/CwTimer.h \
-#            CW/correctIQ.h \
+            CW/CwCore.h \
+            CW/CwMacro.h \
+            CW/CwTimer.h \
+            CW/correctIQ.h \
             ringBuf.h\
             About.h \
             AudioThread.h \
@@ -132,7 +132,7 @@ FORMS    += expertsdr_va2_1.ui \
             Wav/wavSample.ui \
             CalibrateSC/Calibrator/Calibrator.ui \
             CalibrateSC/progresscalibrate.ui \
-#            CW/CwMacro.ui \
+            CW/CwMacro.ui \
             About.ui \
             WdgGraph.ui \
             WdgAddStation.ui \
@@ -142,5 +142,6 @@ FORMS    += expertsdr_va2_1.ui \
 RESOURCES += images.qrc \
             bg.qrc
 
-LIBS +=  -lDttSP -lGLU -lportaudio -lpthread -lm -lfftw3f -lm
+#LIBS +=  -lDttSP -lGLU -lportaudio -lpthread -lm -lfftw3f -lm
+LIBS +=  -lGLU -lportaudio
 QMAKE_CXXFLAGS += -Wno-unused-function
