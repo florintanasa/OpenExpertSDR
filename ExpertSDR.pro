@@ -143,5 +143,6 @@ RESOURCES += images.qrc \
             bg.qrc
 
 #LIBS +=  -lDttSP -lGLU -lportaudio -lpthread -lm -lfftw3f -lm
+
 LIBS +=  -lGLU -lportaudio
 QMAKE_CXXFLAGS += -Wno-unused-function
