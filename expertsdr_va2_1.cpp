@@ -175,11 +175,11 @@ void audioCallBack4(const void *In, void *Out, unsigned long FrameCount, void *U
         if(pDsp->TrxMode == TX)
         {
             if((pDsp->SdrMode == CWL) && !pExpSdr->StateTone)
-                int fake1=0;
-//                pExpSdr->pCwMacro->pCwCore->procSamples(pOutLeft, pOutRight, FrameCount);
+ //               int fake1=0;
+                pExpSdr->pCwMacro->pCwCore->procSamples(pOutLeft, pOutRight, FrameCount);
             else if((pDsp->SdrMode == CWU) && !pExpSdr->StateTone)
-//                pExpSdr->pCwMacro->pCwCore->procSamples(pOutRight, pOutLeft, FrameCount);
-            int fake2=0;
+                pExpSdr->pCwMacro->pCwCore->procSamples(pOutRight, pOutLeft, FrameCount);
+ //           int fake2=0;
                 else
             {
                 switch(pExpSdr->TxInputSignal)
@@ -480,11 +480,11 @@ void DspCallBack(const void *In, void *Out, unsigned long FrameCount, void *User
         if(pDsp->TrxMode == TX)
         {
             if((pDsp->SdrMode == CWL) && !pExpSdr->StateTone)
-    //            pExpSdr->pCwMacro->pCwCore->procSamples(pOutLeft, pOutRight, FrameCount);
-      int fake3=0;
+                pExpSdr->pCwMacro->pCwCore->procSamples(pOutLeft, pOutRight, FrameCount);
+    //  int fake3=0;
                 else if((pDsp->SdrMode == CWU) && !pExpSdr->StateTone)
-    //            pExpSdr->pCwMacro->pCwCore->procSamples(pOutRight, pOutLeft, FrameCount);
-      int fake4=0;
+                pExpSdr->pCwMacro->pCwCore->procSamples(pOutRight, pOutLeft, FrameCount);
+    //  int fake4=0;
                 else
             {
                 if(pExpSdr->pVoiceRec->isRec())
@@ -859,7 +859,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
     savePreamp = 0;
     smeter2mCorr  = 0.0;
     smeter07mCorr = 0.0;
-//    pCwMacro = 0;
+    pCwMacro = 0;
     m_EvtDispatch = 0;
     pCalibrateSC = 0;
     pTimerTxOutKeyer = 0;
@@ -912,7 +912,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
     sdrMode = LSB;
 
 
-//    pCwMacro = new CwMacro;
+    pCwMacro = new CwMacro;
     m_EvtDispatch = QAbstractEventDispatcher::instance(0);
     pCalibrateSC = new ProgressCalibrate;
     pTimerTxOutKeyer = new QTimer;
@@ -1226,7 +1226,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
 //     connect(pPanel, SIGNAL(KeyPtt(bool)),  pSdrCtrl, SIGNAL(PttChanged(bool)));
      connect(pCatManager, SIGNAL(PttChanged(bool)),  pSdrCtrl, SIGNAL(PttChanged(bool)));
      connect(pOpt, SIGNAL(PttChanged(bool)),  pSdrCtrl, SIGNAL(PttChanged(bool)), Qt::QueuedConnection);
- //    connect(pCwMacro,  SIGNAL(trxChanged(bool)), this, SLOT(OnMox(bool)));
+     connect(pCwMacro,  SIGNAL(trxChanged(bool)), this, SLOT(OnMox(bool)));
      connect(ui->pbMox, SIGNAL(clicked(bool)), this, SLOT(IsKeyTrue(bool)));
      connect(ui->pbMute, SIGNAL(clicked(bool)), this, SLOT(OnMute(bool)));
      connect(pSM->ui.pbMute, SIGNAL(clicked(bool)), this, SLOT(OnMute(bool)));
@@ -1256,8 +1256,8 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      connect(pDg7, SIGNAL(Decr()), this, SLOT(LowDig7()));
      connect(pDg8, SIGNAL(Decr()), this, SLOT(LowDig8()));
      connect(pDg9, SIGNAL(Decr()), this, SLOT(LowDig9()));
-//     connect(pOpt->ui.sbWeight, SIGNAL(valueChanged(int)), pCwMacro->pCwCore, SLOT(setWeight(int)));
-//     connect(pOpt->ui.sbRamp, SIGNAL(valueChanged(int)), pCwMacro->pCwCore, SLOT(setRamp(int)));
+     connect(pOpt->ui.sbWeight, SIGNAL(valueChanged(int)), pCwMacro->pCwCore, SLOT(setWeight(int)));
+     connect(pOpt->ui.sbRamp, SIGNAL(valueChanged(int)), pCwMacro->pCwCore, SLOT(setRamp(int)));
      connect(ui->sbCwDelay, SIGNAL(valueChanged(int)), this, SLOT(onBreakInDelay(int)));
      connect(ui->chbBreakIn, SIGNAL(stateChanged(int)), this, SLOT(onBreakIn(int)));
      connect(ui->sbSWSpeed, SIGNAL(valueChanged(int)), this, SLOT(onCwSpeed(int)));
@@ -1388,12 +1388,12 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      connect(pSdrCtrl, SIGNAL(AdcChanged(int, int)), this, SLOT(adcMeters(int, int)));
 //     connect(pPanel, SIGNAL(KeyDash(bool)), pSdrCtrl, SIGNAL(DashChanged(bool)));
 //     connect(pPanel, SIGNAL(KeyDot(bool)),  pSdrCtrl, SIGNAL(DotChanged(bool)));
-//     connect(pOpt, SIGNAL(KeyChanged(bool)),  pCwMacro->pCwCore, SLOT(onKey(bool)), Qt::QueuedConnection);
+     connect(pOpt, SIGNAL(KeyChanged(bool)),  pCwMacro->pCwCore, SLOT(onKey(bool)), Qt::QueuedConnection);
      connect(pOpt, SIGNAL(DashChanged(bool)),  pSdrCtrl, SIGNAL(DashChanged(bool)));
      connect(pOpt, SIGNAL(DotChanged(bool)),  pSdrCtrl, SIGNAL(DotChanged(bool)));
-//     connect(pCatManager, SIGNAL(KeyChanged(bool)),  pCwMacro->pCwCore, SLOT(onKey(bool)));
-//     connect(pSdrCtrl, SIGNAL(DashChanged(bool)),  pCwMacro->pCwCore, SLOT(onDash(bool)));
-//     connect(pSdrCtrl, SIGNAL(DotChanged(bool)),  pCwMacro->pCwCore, SLOT(onDot(bool)));
+     connect(pCatManager, SIGNAL(KeyChanged(bool)),  pCwMacro->pCwCore, SLOT(onKey(bool)));
+     connect(pSdrCtrl, SIGNAL(DashChanged(bool)),  pCwMacro->pCwCore, SLOT(onDash(bool)));
+     connect(pSdrCtrl, SIGNAL(DotChanged(bool)),  pCwMacro->pCwCore, SLOT(onDot(bool)));
      connect(pOpt->ui.chbPoliphase, SIGNAL(stateChanged(int)), this, SLOT(OnSetPolyphase(int)));
      connect(pOpt->ui.sbTxInFilterFreqSsb, SIGNAL(valueChanged(int)), this, SLOT(OnSbTxFilterChanged(int)));
      connect(pOpt->ui.sbTxOutFilterFreqSsb, SIGNAL(valueChanged(int)), this, SLOT(OnSbTxFilterChanged(int)));
@@ -1434,7 +1434,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      connect(ui->pbVac, SIGNAL(clicked(bool)), this, SLOT(OnPbVacEn(bool)));
      connect(pOpt->ui.chbIambic, SIGNAL(stateChanged(int)), this, SLOT(onKeyAutoMode(int)));
      connect(pOpt->ui.chbRevPaddle, SIGNAL(stateChanged(int)), this, SLOT(onSwapKeys(int)));
-//     connect(pCwMacro,  SIGNAL(changeMode(int)), this, SLOT(OnChangeMode(int)));
+     connect(pCwMacro,  SIGNAL(changeMode(int)), this, SLOT(OnChangeMode(int)));
      connect(pCatManager, SIGNAL(txMode()), this, SLOT(onCatTx()));
      connect(pCatManager, SIGNAL(rxMode()), this, SLOT(onCatRx()));
      connect(pOpt->ui.pbLoad, SIGNAL(clicked()), this, SLOT(OnLoad()));
@@ -1486,7 +1486,7 @@ ExpertSDR_vA2_1::~ExpertSDR_vA2_1()
     delete pVfoB;
     delete pAudThr;
     delete pCalibrator;
-//   delete pCwMacro;
+   delete pCwMacro;
     delete pCalibrateSC;
     if(pTimer->isActive())
         pTimer->stop();
@@ -1570,8 +1570,8 @@ void ExpertSDR_vA2_1::closeEvent(QCloseEvent *event)
         pSdrCtrl->Stop();
     if(pSM->isVisible())
         pSM->close();
-//    if(pCwMacro->isVisible())
-//        pCwMacro->close();
+    if(pCwMacro->isVisible())
+        pCwMacro->close();
 
     pOpt->StopProgs();
     pDsp->terminate();
@@ -1605,7 +1605,7 @@ void ExpertSDR_vA2_1::onPaVacDriverChanged(int Index)
 
 void ExpertSDR_vA2_1::onCwSpeed(int speed)
 {
-//	pCwMacro->pCwCore->setSpeed(speed);
+    pCwMacro->pCwCore->setSpeed(speed);
 }
 
 void ExpertSDR_vA2_1::adcMeters(int Ufwd, int Uref)
@@ -2210,7 +2210,7 @@ retry:
                     settings.setValue("chb07Tx6", pOpt->ui.chb07Tx6->isChecked());
                     pGraph->pGl->pPanOpt->writeSettings(&settings);
 //                    pPanel->writeSettings(&settings);
-//                    pCwMacro->writeSetting(&settings);
+                    pCwMacro->writeSetting(&settings);
                     pSmeter->saveSettings(&settings);
                     pMem->writeSettings(&settings);
                     settings.setValue("CalibrationPath", pathTmp);
@@ -3258,17 +3258,17 @@ void ExpertSDR_vA2_1::readSettings()
         pOpt->ui.chbIambic->setChecked(settings.value("chbIambicKeyer", true).toBool());
         pOpt->ui.chbDisMonitor->setChecked(settings.value("chbDisMonitorKeyer", false).toBool());
         pOpt->ui.chbRevPaddle->setChecked(settings.value("chbRevPaddleKeyer", false).toBool());
-//       pCwMacro->pCwCore->swapKeys(pOpt->ui.chbRevPaddle->checkState());
+       pCwMacro->pCwCore->swapKeys(pOpt->ui.chbRevPaddle->checkState());
         pOpt->ui.chbHighRes->setChecked(settings.value("chbHighResKeyer", false).toBool());
         pOpt->ui.chbModeB->setChecked(settings.value("chbModeBKeyer", false).toBool());
         pOpt->ui.sbWeight->setValue(settings.value("sbWeightKeyer", 50).toInt());
         pOpt->ui.sbRamp->setValue(settings.value("sbRampKeyer", 5).toInt());
         ui->sbSWSpeed->setValue(settings.value("sbCWSpeed", 25).toInt());
         ui->sbCwDelay->setValue(settings.value("sbDelayTxOut", 200).toInt());
-//        pCwMacro->pCwCore->setWeight(pOpt->ui.sbWeight->value());
-//        pCwMacro->pCwCore->setRamp(pOpt->ui.sbRamp->value());
-//        pCwMacro->pCwCore->setSpeed(ui->sbSWSpeed->value());
-//        pCwMacro->pCwCore->setBreakInDelay(ui->sbCwDelay->value());
+        pCwMacro->pCwCore->setWeight(pOpt->ui.sbWeight->value());
+        pCwMacro->pCwCore->setRamp(pOpt->ui.sbRamp->value());
+        pCwMacro->pCwCore->setSpeed(ui->sbSWSpeed->value());
+        pCwMacro->pCwCore->setBreakInDelay(ui->sbCwDelay->value());
         pOpt->ui.chbKeyEnable->setChecked(settings.value("SecKeyEnable", false).toBool());
         pOpt->ui.cbKeyPortName->setCurrentIndex(settings.value("SecKeyPortName", 0).toInt());
         pOpt->ui.cbKeyPttLine->setCurrentIndex(settings.value("SecKeyPttLine", 0).toInt());
@@ -3280,7 +3280,7 @@ void ExpertSDR_vA2_1::readSettings()
         pOpt->ui.cbAddKeys->setCurrentIndex(settings.value("AddKeyPortDtrRts", 0).toInt());
         if(pOpt->ui.chbAddKeyEnable->isChecked())
             pOpt->addKeyOpen(true);
- //       pCwMacro->pCwCore->setAutoMode(pOpt->ui.chbIambic->checkState());
+        pCwMacro->pCwCore->setAutoMode(pOpt->ui.chbIambic->checkState());
         pOpt->SetProg0(settings.value("cbProg0", false).toBool(), settings.value("Prog0", "").toString());
         pOpt->SetProg1(settings.value("cbProg1", false).toBool(), settings.value("Prog1", "").toString());
         pOpt->SetProg2(settings.value("cbProg2", false).toBool(), settings.value("Prog2", "").toString());
@@ -3470,7 +3470,7 @@ void ExpertSDR_vA2_1::readSettings()
 
         pGraph->pGl->pPanOpt->readSettings(&settings);
 //        pPanel->readSettings(&settings);
-//        pCwMacro->readSettings(&settings);
+        pCwMacro->readSettings(&settings);
         pSmeter->restoreSettings(&settings);
         pMem->readSettings(&settings);
         pathTmp = settings.value("CalibrationPath", QDir::homePath()).toString();
@@ -3735,8 +3735,8 @@ void ExpertSDR_vA2_1::OnTimeClick()
 
 void ExpertSDR_vA2_1::onCwMacro()
 {
- //   pCwMacro->show();
- //   pCwMacro->activateWindow();
+    pCwMacro->show();
+    pCwMacro->activateWindow();
     if((OptBands[CurrentBandIndex].CurrentModeIndex != CWU) && (OptBands[CurrentBandIndex].CurrentModeIndex != CWL))
         OnChangeMode((CurrentBandIndex > BAND40M) ? CWU : CWL);
 }
@@ -3902,7 +3902,7 @@ void ExpertSDR_vA2_1::OnChangeMode(int Mode)
         ui->pbVoiceRec->setEnabled(true);
     }
     SetTxFilter();
-//    pCwMacro->setMode((SDRMODE)Mode);
+    pCwMacro->setMode((SDRMODE)Mode);
     pGraph->pGl->SetMode((SDRMODE)Mode);
     if(Mode == CWL || Mode == CWU)
     {
@@ -4625,10 +4625,10 @@ void ExpertSDR_vA2_1::OnStart(bool Start)
             }
             pMem->pIqList->setSampleRate(pOpt->getSampleRate());
             pMem->setCentralFreq(pGraph->pGl->GetDDSFreq());
-//            pCwMacro->pCwCore->setBufferSize(pOpt->ui.cbPaBufferSize->currentText().toInt());
-//            pCwMacro->pCwCore->setSampleRate(pOpt->getSampleRate());
-//            pCwMacro->start();
-//            pCwMacro->setMode((SDRMODE)pModeBut->checkedId());
+            pCwMacro->pCwCore->setBufferSize(pOpt->ui.cbPaBufferSize->currentText().toInt());
+            pCwMacro->pCwCore->setSampleRate(pOpt->getSampleRate());
+            pCwMacro->start();
+            pCwMacro->setMode((SDRMODE)pModeBut->checkedId());
             OnMox(RX);
             OnMute(ui->pbMute->isChecked());
             pGraph->pGl->SetFilter2(-pGraph->pGl->GetDDSFreq() + pVfoB->value());
@@ -4666,7 +4666,7 @@ StopSun1:
             pVac->close();
             pDsp->SetRx1Osc(-SaveFilter);
             pSdrCtrl->Stop();
- //           pCwMacro->stop();
+            pCwMacro->stop();
             OnMox(RX);
             ui->pbEqRx->setChecked(true);
             ui->pbStart->setChecked(false);
@@ -4795,20 +4795,20 @@ void ExpertSDR_vA2_1::OnMox(bool Tx)
             band.setY(1);
             pGraph->pGl->SpectrumEnable(false);
             pDsp->SetTxOsc(0.0);
-   //         if(!pCwMacro->pCwCore->isTxMode())
-   //         {
-   //             pCwMacro->pCwCore->reset();
-   //         }
+            if(!pCwMacro->pCwCore->isTxMode())
+            {
+                pCwMacro->pCwCore->reset();
+            }
             break;
         case CWL:
             band.setX(0);
             band.setY(-1);
             pGraph->pGl->SpectrumEnable(false);
             pDsp->SetTxOsc(0.0);
-   //         if(!pCwMacro->pCwCore->isTxMode())
-   //         {
-   //             pCwMacro->pCwCore->reset();
-   //         }
+            if(!pCwMacro->pCwCore->isTxMode())
+            {
+                pCwMacro->pCwCore->reset();
+            }
             break;
         case SPEC:
             band.setY(pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0);
@@ -5041,7 +5041,7 @@ void ExpertSDR_vA2_1::OnPitch(int Val)
         OptBands[CurrentBandIndex].Pitch = Val;
         ui->slPitch->setValue(Val);
         ui->sbPitch->setValue(Val);
-    //	pCwMacro->pCwCore->setFreq(Val);
+        pCwMacro->pCwCore->setFreq(Val);
     }
     OnChangeFilter(OptBands[CurrentBandIndex].Mode[OptBands[CurrentBandIndex].CurrentModeIndex].FilterIndex);
     pSM->SetPitch(pGraph->pGl->GetPitch());
@@ -5423,12 +5423,12 @@ void ExpertSDR_vA2_1::OnChangeTxPhaseRej(double Rej)
 
 void ExpertSDR_vA2_1::OnChangeTxGainRejCw(double Rej)
 {
-//	pCwMacro->pCwCore->correctGain(Rej/100.0);
+    pCwMacro->pCwCore->correctGain(Rej/100.0);
 }
 
 void ExpertSDR_vA2_1::OnChangeTxPhaseRejCw(double Rej)
 {
-//	pCwMacro->pCwCore->correctPhase(Rej/100.0);
+    pCwMacro->pCwCore->correctPhase(Rej/100.0);
 }
 
 void ExpertSDR_vA2_1::SetFreqMin(int Value)
@@ -6316,22 +6316,22 @@ void ExpertSDR_vA2_1::ChangeRxFreqSignal(int val)
 
 void ExpertSDR_vA2_1::onBreakInDelay(int val)
 {
-//	pCwMacro->pCwCore->setBreakInDelay(val);
+    pCwMacro->pCwCore->setBreakInDelay(val);
 }
 
 void ExpertSDR_vA2_1::onBreakIn(int en)
 {
-//	pCwMacro->pCwCore->setBreakIn((bool)en);
+    pCwMacro->pCwCore->setBreakIn((bool)en);
 }
 
 void ExpertSDR_vA2_1::onSwapKeys(int en)
 {
-//	pCwMacro->pCwCore->swapKeys(en);
+    pCwMacro->pCwCore->swapKeys(en);
 }
 
 void ExpertSDR_vA2_1::onKeyAutoMode(int en)
 {
-//	pCwMacro->pCwCore->setAutoMode(en);
+    pCwMacro->pCwCore->setAutoMode(en);
 }
 
 void ExpertSDR_vA2_1::onCatTx()

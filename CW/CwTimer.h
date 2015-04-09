@@ -24,14 +24,17 @@
 #ifndef CWTIMER_H_
 #define CWTIMER_H_
 
-#define USE_WINMM_TIMER	1
+
 
 #include <QtWidgets>
-#include "qt_windows.h"
 
+#ifdef Q_OS_WIN
+#include "qt_windows.h"
+#define USE_WINMM_TIMER	1
 #if USE_WINMM_TIMER
     #include "mmsystem.h"
 #endif
+#endif /*Q_OS_WIN*/
 
 #if USE_WINMM_TIMER
 class CwTimer  : public QWidget

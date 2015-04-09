@@ -119,11 +119,11 @@ void AudioThread::run()
      		if(pDsp->TrxMode == TX)
      		{
      			if((pDsp->SdrMode == CWL) && !pExpSdr->StateTone)
-//     				pExpSdr->pCwMacro->pCwCore->procSamples(outL, outR, bufSize);
-                int fake5=0;
+                    pExpSdr->pCwMacro->pCwCore->procSamples(outL, outR, bufSize);
+  //              int fake5=0;
                     else if((pDsp->SdrMode == CWU) && !pExpSdr->StateTone)
-//     				pExpSdr->pCwMacro->pCwCore->procSamples(outR, outL, bufSize);
-                int fake6=0;
+                    pExpSdr->pCwMacro->pCwCore->procSamples(outR, outL, bufSize);
+  //              int fake6=0;
                     else
      			{
      				switch(pExpSdr->TxInputSignal)

@@ -28,7 +28,7 @@
 #include "SmeterGUI/SMeterSDR.h"
 #include "S-Meter/S_Meter.h"
 #include "Vac.h"
-//#include "CW/CwMacro.h"
+#include "CW/CwMacro.h"
 #include "scale/Scale.h"
 #include "AudioThread.h"
 #include "CalibrateSC/Calibrator/Calibrator.h"
@@ -202,7 +202,7 @@ private:
     QActionGroup *pAgStep;
     QMenu *pMenuFreqUpDown;
     QActionGroup *pFupDownAct;
-//    CwMacro *pCwMacro;
+    CwMacro *pCwMacro;
     qreal Volume;
     qreal MonVolume;
     int glitchCoeff;
