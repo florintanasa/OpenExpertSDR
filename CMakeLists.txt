@@ -44,10 +44,10 @@ set(expertsdr_SRC
         CalibrateSC/progresscalibrate.cpp
         Logger/VLogger.cpp
         Logger/VLogger.h
-#        CW/CwCore.cpp
-#        CW/CwMacro.cpp
-#        CW/CwTimer.cpp
-#        CW/correctIQ.cpp
+        CW/CwCore.cpp
+        CW/CwMacro.cpp
+        CW/CwTimer.cpp
+        CW/correctIQ.cpp
         ringBuf.cpp
         About.cpp
         AudioThread.cpp
@@ -83,7 +83,7 @@ qt5_wrap_ui(expertsdr_SRC expertsdr_va2_1.ui
             Wav/wavSample.ui
             CalibrateSC/Calibrator/Calibrator.ui
             CalibrateSC/progresscalibrate.ui
-#            CW/CwMacro.ui
+            CW/CwMacro.ui
             About.ui
             WdgGraph.ui
             WdgAddStation.ui
@@ -99,7 +99,7 @@ qt5_ADD_RESOURCES(expertsdr_RESOURCES_RCC ${expertsdr_RESOURCES})
 add_executable(expertsdr ${expertsdr_SRC} ${expertsdr_RESOURCES_RCC})
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(expertsdr Qt5::Widgets Qt5::OpenGL GLU GL glut udev DttSP portaudio pthread lo fftw3f gsl cblas m)
+target_link_libraries(expertsdr Qt5::Widgets Qt5::OpenGL GLU GL udev portaudio)
 
 # Install the executable
 install(TARGETS expertsdr DESTINATION bin)
