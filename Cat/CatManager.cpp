@@ -31,8 +31,24 @@ CatManager::CatManager(ExpertSDR_vA2_1 *pE, Options *pO, QWidget *parent) : QWid
 	pOpt = pO;
 	pSdr = pE;
 	TimerId = 0;
+    pOpt->ui.cbCatPortName->clear();
 
-    pCom = new QextSerialPort("COM1", QextSerialPort::EventDriven);
+       QList<QextPortInfo> ports = QextSerialEnumerator::getPorts();
+       if (ports.size()!=0)
+       {
+           for (int i = 0; i < ports.size(); i++)
+           {
+                  pOpt->ui.cbCatPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
+           }
+       }
+
+
+    #ifdef Q_OS_UNIX
+        pCom = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
+    #else
+        pCom = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
+    #endif /*Q_OS_UNIX*/
+
 	connect(pOpt->ui.chbCatEnable, SIGNAL(clicked(bool)), this, SLOT(Open(bool)));
 	connect(pCom, SIGNAL(readyRead()), this, SLOT(comReceive()));
 	connect(pCom, SIGNAL(dsrChanged(bool)), this, SLOT(OnKeyDsr(bool)));

@@ -39,6 +39,8 @@
 #include "Defines.h"
 //#include "Cat/ExtSerialPort/qextserialport.h"
 #include "Cat/QextSerialPort/qextserialport.h"
+#include "Cat/QextSerialPort/qextserialenumerator.h"
+
 class Options : public QWidget
 {
 		Q_OBJECT

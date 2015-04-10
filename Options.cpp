@@ -77,19 +77,38 @@ Options::Options(QWidget *parent) : QWidget(parent)
 
     PortSettings settings = {BAUD9600, DATA_8, PAR_NONE, STOP_1, FLOW_OFF, 10};
 
-//    pPttPort = new QextSerialPort("COM1", QIODevice::ReadWrite);
-    //pPttPort = new QSerialPort();
-    pPttPort = new QextSerialPort();
+   //prepare to pupulate list in combobox with serial ports
+    ui.cbPttPortName->clear();
+    ui.cbAddKeyPortName->clear();
+    ui.cbKeyPortName->clear();
+
+       QList<QextPortInfo> ports = QextSerialEnumerator::getPorts();
+       if (ports.size()!=0)
+       {
+           for (int i = 0; i < ports.size(); i++)
+           {
+                  ui.cbPttPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
+                  ui.cbAddKeyPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
+                  ui.cbKeyPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
+              // ui.cbPttPortName->addItem(ports.at(i).physName.toLocal8Bit().constData(),0);
+           }
+       }
+
+
+    #ifdef Q_OS_UNIX
+        pPttPort = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
+        pKeyPort = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
+        pAddKeyPort = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
+    #else
+        pPttPort = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
+        pKeyPort = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
+        pAddKeyPort = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
+    #endif /*Q_OS_UNIX*/
+
     connect(pPttPort, SIGNAL(dsrChanged(bool)), this, SLOT(OnPttDsr(bool)));
     connect(pPttPort, SIGNAL(ctsChanged(bool)), this, SLOT(OnPttCts(bool)));
-//    pKeyPort = new QextSerialPort("COM1", QextSerialPort::ReadWrite);
-    //pKeyPort = new QSerialPort();
-    pKeyPort  = new QextSerialPort();
     connect(pKeyPort, SIGNAL(dsrChanged(bool)), this, SLOT(OnKeyDsr(bool)));
     connect(pKeyPort, SIGNAL(ctsChanged(bool)), this, SLOT(OnKeyCts(bool)));
-//    pAddKeyPort = new QextSerialPort("COM1", QextSerialPort::ReadWrite);
-    //pAddKeyPort = new QSerialPort();
-    pAddKeyPort = new QextSerialPort();
     connect(pAddKeyPort, SIGNAL(dsrChanged(bool)), this, SLOT(OnAddKeyDsr(bool)));
     connect(pAddKeyPort, SIGNAL(ctsChanged(bool)), this, SLOT(OnAddKeyCts(bool)));
 	connect(ui.LwOptions, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(ChangePage(QListWidgetItem*, QListWidgetItem*)));
@@ -904,23 +923,17 @@ void Options::pttOpen(bool stat)
 	ui.chbPttEnable->setChecked(stat);
 	if(stat)
 	{
-
- //       pPttPort->setBaudRate(QSerialPort::Baud9600);
- //       pPttPort->setDataBits(QSerialPort::Data8);
- //       pPttPort->setStopBits(QSerialPort::OneStop);
- //       pPttPort->setParity(QSerialPort::NoParity);
- //       pPttPort->setFlowControl(QSerialPort::NoFlowControl);
         pPttPort->setBaudRate(BAUD9600);
         pPttPort->setDataBits(DATA_8);
         pPttPort->setStopBits(STOP_1);
         pPttPort->setParity(PAR_NONE);
         pPttPort->setFlowControl(FLOW_OFF);
-        pPttPort->setTimeout(1);
+        pPttPort->setTimeout(500);
 
 		if(ui.cbPttPortName->currentIndex() < 8)
 		{
-			pPttPort->setPortName(ui.cbPttPortName->currentText());
-			pPttPort->open(QIODevice::ReadWrite);
+            pPttPort->setPortName(ui.cbPttPortName->currentText());
+            pPttPort->open(QIODevice::ReadWrite);
 		}
 		else
 		{
@@ -957,11 +970,6 @@ void Options::keyOpen(bool stat)
 	ui.chbKeyEnable->setChecked(stat);
 	if(stat)
 	{
-//        pKeyPort->setBaudRate(QSerialPort::Baud9600);
-//        pKeyPort->setDataBits(QSerialPort::Data8);
-//        pKeyPort->setStopBits(QSerialPort::OneStop);
-//        pKeyPort->setParity(QSerialPort::NoParity);
-//        pKeyPort->setFlowControl(QSerialPort::NoFlowControl);
         pKeyPort->setBaudRate(BAUD9600);
         pKeyPort->setDataBits(DATA_8);
         pKeyPort->setStopBits(STOP_1);
@@ -1009,11 +1017,6 @@ void Options::addKeyOpen(bool stat)
 	ui.chbAddKeyEnable->setChecked(stat);
 	if(stat)
 	{
-//        pAddKeyPort->setBaudRate(QSerialPort::Baud9600);
-//        pAddKeyPort->setDataBits(QSerialPort::Data8);
-//        pAddKeyPort->setStopBits(QSerialPort::OneStop);
-//        pAddKeyPort->setParity(QSerialPort::NoParity);
-//        pAddKeyPort->setFlowControl(QSerialPort::NoFlowControl);
         pAddKeyPort->setBaudRate(BAUD9600);
         pAddKeyPort->setDataBits(DATA_8);
         pAddKeyPort->setStopBits(STOP_1);
