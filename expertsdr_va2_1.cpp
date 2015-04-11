@@ -659,12 +659,6 @@ void DspCallBack(const void *In, void *Out, unsigned long FrameCount, void *User
         else
         {
             pExpSdr->pMem->readIqBuf(pInLeft, pInRight, FrameCount);
-            qWarning() << "pDsp =" << pDsp << endl;
-            qWarning() << "pDsp->DspPos =" << pDsp->DspPos << endl;
-            qWarning() << "pDsp->DspCircleBuf[pDsp->DspPos][0] =" << pDsp->DspCircleBuf[pDsp->DspPos][0] << endl;
-            qWarning() << "pDsp->DspCircleBuf[pDsp->DspPos][1] =" << pDsp->DspCircleBuf[pDsp->DspPos][1] << endl;
-            qWarning() << "pInLeft =" << pInLeft << endl;
-            qWarning() << "pInRight =" << pInRight << endl;
 
             memcpy(pDsp->DspCircleBuf[pDsp->DspPos][0], pInLeft, FrameCount*sizeof(float));
             memcpy(pDsp->DspCircleBuf[pDsp->DspPos][1], pInRight, FrameCount*sizeof(float));
@@ -3092,7 +3086,7 @@ void ExpertSDR_vA2_1::readSettings()
         pOpt->onSdrTypeChanged(SDRPluginIndex);
 
         tmpIValue = settings.value("Audio_Driver", 0).toInt();
-        if(tmpIValue < 0 || tmpIValue > 1)
+        if(tmpIValue < 0 || tmpIValue > 2)
         {
             qWarning() << "ExpertSDR: readSettings(): Audio_Driver = " << tmpIValue;
             tmpIValue = 0;

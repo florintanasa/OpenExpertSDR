@@ -3189,7 +3189,7 @@ void Panarama::FilterPos()
 	}
 	else
 	{
-		if(AlphaColorCF > 0.0)
+        if(AlphaColorCF > 0.009)
 		{
 			AlphaColorCF -= 0.09;
 			isUpdate = true;
