@@ -2,7 +2,12 @@
 #include "ui_expertsdr_va2_1.h"
 
 #include <QList>
-//#include <dbt.h>
+#ifdef Q_OS_WIN
+#include <dbt.h>
+#include <windows.h> // for Sleep
+#endif
+
+#include <QList>
 #include <search.h>
 #include <string.h>
 #include <stdio.h>
@@ -52,9 +57,20 @@ T GetMax(T array[], int size)
   return t;
 }
 
+void qSleep(int ms)
+{
+#ifdef Q_OS_WIN
+    Sleep(uint(ms));
+#else
+    struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+    nanosleep(&ts, NULL);
+#endif
+}
+
 void TimeWaitInInstatnceThread(int mSec)
 {
 //    Sleep(mSec);
+    qSleep(mSec);
     TxRxTimeDelayMutix.lock();
     IsReadyRx = true;
     TxRxTimeDelayMutix.unlock();
@@ -63,6 +79,7 @@ void TimeWaitInInstatnceThread(int mSec)
 void TimeWaitRxTxInInstatnceThread(int mSec)
 {
 //    Sleep(mSec);
+    qSleep(mSec);
     RxTxTimeDelayMutix.lock();
     IsReadyTx = true;
     RxTxTimeDelayMutix.unlock();
