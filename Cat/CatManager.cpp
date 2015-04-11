@@ -44,9 +44,9 @@ CatManager::CatManager(ExpertSDR_vA2_1 *pE, Options *pO, QWidget *parent) : QWid
 
 
     #ifdef Q_OS_UNIX
-        pCom = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
+        pCom = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
     #else
-        pCom = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
+        pCom = new QextSerialPort("COM1", QextSerialPort::EventDriven);
     #endif /*Q_OS_UNIX*/
 
 	connect(pOpt->ui.chbCatEnable, SIGNAL(clicked(bool)), this, SLOT(Open(bool)));
