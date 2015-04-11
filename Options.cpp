@@ -75,8 +75,6 @@ Options::Options(QWidget *parent) : QWidget(parent)
 	pProg3 = new QProcess(this);
 	pProg4 = new QProcess(this);
 
-    PortSettings settings = {BAUD9600, DATA_8, PAR_NONE, STOP_1, FLOW_OFF, 10};
-
    //prepare to pupulate list in combobox with serial ports
     ui.cbPttPortName->clear();
     ui.cbAddKeyPortName->clear();
@@ -90,19 +88,18 @@ Options::Options(QWidget *parent) : QWidget(parent)
                   ui.cbPttPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
                   ui.cbAddKeyPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
                   ui.cbKeyPortName->addItem(ports.at(i).portName.toLocal8Bit().constData(),0);
-              // ui.cbPttPortName->addItem(ports.at(i).physName.toLocal8Bit().constData(),0);
            }
        }
 
 
     #ifdef Q_OS_UNIX
-        pPttPort = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
-        pKeyPort = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
-        pAddKeyPort = new QextSerialPort(QLatin1String("/dev/ttyS0"), QextSerialPort::Polling);
+        pPttPort = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
+        pKeyPort = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
+        pAddKeyPort = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
     #else
-        pPttPort = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
-        pKeyPort = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
-        pAddKeyPort = new QextSerialPort(QLatin1String("COM1"), QextSerialPort::Polling);
+       pPttPort = new QextSerialPort("COM1", QextSerialPort::EventDriven);
+       pKeyPort = new QextSerialPort("COM1", QextSerialPort::EventDriven);
+       pAddKeyPort = new QextSerialPort("COM1", QextSerialPort::EventDriven);
     #endif /*Q_OS_UNIX*/
 
     connect(pPttPort, SIGNAL(dsrChanged(bool)), this, SLOT(OnPttDsr(bool)));
