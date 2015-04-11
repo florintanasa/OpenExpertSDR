@@ -76,7 +76,7 @@ CwTimer::~CwTimer()
 {
 	if(isRunning())
 	{
-		terminate();
+        exit();
 		wait();
 	}
 }
@@ -94,7 +94,7 @@ bool CwTimer::isStart()
 
 void CwTimer::stopTimer()
 {
-	terminate();
+    exit();
 	wait();
 	isStarted = false;
 }
