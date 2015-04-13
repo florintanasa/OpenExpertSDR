@@ -161,6 +161,7 @@ void pluginCtrl::setDdsFreq(int Freq)
 
     if(IsExtIOMode()&&IsExtIOOpen())
     {
+        dds_chg = GetHWLO() != Freq;
         if(dds_chg && (rxtx_mode == hmRX))
         {
             SetHWLO(Freq);
