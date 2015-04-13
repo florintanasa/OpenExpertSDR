@@ -127,6 +127,7 @@ void SdrPlugin::SetSdrType(SDR_DEVICE Type)
 
 void SdrPlugin::SetPreamp(int Preamp)
 {
+    qDebug() << __FUNCTION__ << ":" << __LINE__ << " Preamp:" << Preamp;
     if(pSDRhw)
         pSDRhw->setPreamp(Preamp);
 }
