@@ -142,7 +142,7 @@ bool pluginCtrl::isOpen()
 void pluginCtrl::setPreamp(int Preamp)
 {
     if(IsExtIOMode())
-        return SetAtten((Preamp - 3) * 10);
+        return SetPreamp((Preamp - 3) * 10);
     else
         if(routs.setPreamp && pluginLoaded)
             routs.setPreamp(Preamp);

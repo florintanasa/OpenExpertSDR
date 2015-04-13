@@ -29,7 +29,7 @@ typedef void (*ExtIO_GetFilters)(int&, int&, int&);
 typedef int (*ExtIOext_SetModeRxTx)(int);
 typedef int (*ExtIOext_ActivateTx)(int, int);
 typedef void (*ExtIOext_VersionInfo)(const char*, int, int);
-typedef void (*ExtIOext_SetAtten)(int db);
+typedef void (*ExtIOext_SetPreamp)(int db);
 
 //GetStatus GetHWSR, HideGUI, RawDataReady, GetFilters are not implemented
 #  elif defined WIN32
@@ -88,7 +88,7 @@ typedef struct
     ExtIOext_SetModeRxTx SetModeRxTx;
     ExtIOext_ActivateTx ActivateTx;
     ExtIOext_VersionInfo VersionInfo;
-    ExtIOext_SetAtten SetAtten;
+    ExtIOext_SetPreamp SetPreamp;
 } ExtIORouts;
 
 enum ExtIOCallbackStatus {
@@ -145,7 +145,7 @@ protected:
 
     void SetModeRxTx(HwModeRxTx mode);
 
-    void SetAtten(int db);
+    void SetPreamp(int db);
 
     bool IsExtIOMode();
     bool IsExtIOOpen();

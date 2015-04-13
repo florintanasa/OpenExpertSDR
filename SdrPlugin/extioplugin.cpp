@@ -41,7 +41,7 @@ void ExtIOPlugin::ExtIOPluginInit(QLibrary *plugin)
     routs.SetModeRxTx = (ExtIOext_SetModeRxTx)plugin->resolve("SetModeRxTx");
     routs.ActivateTx = (ExtIOext_ActivateTx)plugin->resolve("ActivateTx");
     routs.VersionInfo = (ExtIOext_VersionInfo)plugin->resolve("VersionInfo");
-    routs.SetAtten = (ExtIOext_SetAtten)plugin->resolve("SetAtten");
+    routs.SetPreamp = (ExtIOext_SetPreamp)plugin->resolve("SetPreamp");
     #  if defined (__GNUC__) && defined(__unix__)
     typedef void (*ExtIOext_VersionInfo)(char *name, int ver_major, int ver_minor);
     #  elif defined WIN32
@@ -306,11 +306,11 @@ void ExtIOPlugin::version_info(const char *name, int ver_major, int ver_minor)
     if(routs.VersionInfo)
         routs.VersionInfo(name, ver_major, ver_minor);
 }
-void ExtIOPlugin::SetAtten(int db)
+void ExtIOPlugin::SetPreamp(int db)
 {
-    if(routs.SetAtten)
+    if(routs.SetPreamp)
     {
-        routs.SetAtten(db);
+        routs.SetPreamp(db);
     }
 }
 
