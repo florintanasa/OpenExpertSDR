@@ -1238,6 +1238,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      connect(this, SIGNAL(TuneChanged(int)), pSdrCtrl, SLOT(OnTuneChanged(int)));
      connect(this, SIGNAL(ModeChanged(int)), pSdrCtrl, SLOT(OnModeChanged(int)));
      connect(this, SIGNAL(SoundCardSampleRateChanged(int)), pSdrCtrl, SLOT(SoundCardSampleRateChanged(int)));
+//     connect(pPanel, SIGNAL(KeyPtt(bool)),  pSdrCtrl, SIGNAL(PttChanged(bool)));
      connect(pCatManager, SIGNAL(PttChanged(bool)),  pSdrCtrl, SIGNAL(PttChanged(bool)));
      connect(pOpt, SIGNAL(PttChanged(bool)),  pSdrCtrl, SIGNAL(PttChanged(bool)), Qt::QueuedConnection);
      connect(pCwMacro,  SIGNAL(trxChanged(bool)), this, SLOT(OnMox(bool)));
@@ -1405,6 +1406,8 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      connect(pOpt, SIGNAL(PowerCorrectChanged07(int)), this, SLOT(PowerCorrect07(int)));
      connect(pCalibrateSC, SIGNAL(CloseSignal()), this, SLOT(endCalibrateCard()));
      connect(pSdrCtrl, SIGNAL(AdcChanged(int, int)), this, SLOT(adcMeters(int, int)));
+//     connect(pPanel, SIGNAL(KeyDash(bool)), pSdrCtrl, SIGNAL(DashChanged(bool)));
+//     connect(pPanel, SIGNAL(KeyDot(bool)),  pSdrCtrl, SIGNAL(DotChanged(bool)));
      connect(pOpt, SIGNAL(KeyChanged(bool)),  pCwMacro->pCwCore, SLOT(onKey(bool)), Qt::QueuedConnection);
      connect(pOpt, SIGNAL(DashChanged(bool)),  pSdrCtrl, SIGNAL(DashChanged(bool)));
      connect(pOpt, SIGNAL(DotChanged(bool)),  pSdrCtrl, SIGNAL(DotChanged(bool)));
@@ -1797,40 +1800,59 @@ retry:
         int Index = 0;
         QString Str;
         float Val;
+        double SettingVal;
         setSunSDR.beginGroup("SunSDR");
             setSunSDR.beginGroup("FileVersion_1_0_0");
-                setSunSDR.setValue("CalibrationPreamp0", CalibrateLevel[0]);
-                setSunSDR.setValue("CalibrationPreamp1", CalibrateLevel[1]);
-                setSunSDR.setValue("CalibrationPreamp2", CalibrateLevel[2]);
-                setSunSDR.setValue("CalibrationPreamp3", CalibrateLevel[3]);
-                setSunSDR.setValue("CalibrationPreamp4", CalibrateLevel[4]);
+                SettingVal = CalibrateLevel[0];
+                setSunSDR.setValue("CalibrationPreamp0", SettingVal);
+                SettingVal = CalibrateLevel[1];
+                setSunSDR.setValue("CalibrationPreamp1", SettingVal);
+                SettingVal = CalibrateLevel[2];
+                setSunSDR.setValue("CalibrationPreamp2", SettingVal);
+                SettingVal = CalibrateLevel[3];
+                setSunSDR.setValue("CalibrationPreamp3", SettingVal);
+                SettingVal = CalibrateLevel[4];
+                setSunSDR.setValue("CalibrationPreamp4", SettingVal);
                 setSunSDR.setValue("CalibrationFreq", CalibrateFreq);
                 pOpt->GetPowerCorrection(BAND160M, &Val);
-                setSunSDR.setValue("PowerCorrection160", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection160", SettingVal);
                 pOpt->GetPowerCorrection(BAND80M, &Val);
-                setSunSDR.setValue("PowerCorrection80", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection80", SettingVal);
                 pOpt->GetPowerCorrection(BAND60M, &Val);
-                setSunSDR.setValue("PowerCorrection60", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection60", SettingVal);
                 pOpt->GetPowerCorrection(BAND40M, &Val);
-                setSunSDR.setValue("PowerCorrection40", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection40", SettingVal);
                 pOpt->GetPowerCorrection(BAND30M, &Val);
-                setSunSDR.setValue("PowerCorrection30", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection30", SettingVal);
                 pOpt->GetPowerCorrection(BAND20M, &Val);
-                setSunSDR.setValue("PowerCorrection20", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection20", SettingVal);
                 pOpt->GetPowerCorrection(BAND17M, &Val);
-                setSunSDR.setValue("PowerCorrection17", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection17", SettingVal);
                 pOpt->GetPowerCorrection(BAND15M, &Val);
-                setSunSDR.setValue("PowerCorrection15", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection15", SettingVal);
                 pOpt->GetPowerCorrection(BAND12M, &Val);
-                setSunSDR.setValue("PowerCorrection12", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection12", SettingVal);
                 pOpt->GetPowerCorrection(BAND10M, &Val);
-                setSunSDR.setValue("PowerCorrection10", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection10", SettingVal);
                 pOpt->GetPowerCorrection(BAND6M, &Val);
-                setSunSDR.setValue("PowerCorrection6", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection6", SettingVal);
                 pOpt->GetPowerCorrection(BAND2M, &Val);
-                setSunSDR.setValue("PowerCorrection2", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection2", SettingVal);
                 pOpt->GetPowerCorrection(BAND07M, &Val);
-                setSunSDR.setValue("PowerCorrection07", Val);
+                SettingVal = Val;
+                setSunSDR.setValue("PowerCorrection07", SettingVal);
                 setSunSDR.setValue("LevelOutVoltage", pOpt->ui.doubleSpinBox->value());
                 setSunSDR.setValue("Tx_GainIQ", pOpt->ui.slTxImRejMag->value());
                 setSunSDR.setValue("TX_PhaseIQ", pOpt->ui.slTxImRejPhase->value());
@@ -3492,9 +3514,7 @@ void ExpertSDR_vA2_1::readSettings()
         pOpt->ui.chb07Tx6->setChecked(settings.value("chb07Tx6", false).toBool());
 
         pGraph->pGl->pPanOpt->readSettings(&settings);
-#ifdef Q_OS_WIN
-        pPanel->readSettings(&settings);
-#endif
+//        pPanel->readSettings(&settings);
         pCwMacro->readSettings(&settings);
         pSmeter->restoreSettings(&settings);
         pMem->readSettings(&settings);
@@ -4747,18 +4767,10 @@ void ExpertSDR_vA2_1::OnMox(bool Tx)
     if(!pOpt->ui.chbPaTxDelay->isChecked())
     {
         QObject *id = sender();
-#ifdef Q_OS_WIN
-        if(((id == ui->pbMox) || (id == pPanel) || (id == pSdrCtrl)) && Tx)
-            setRampDelayEnable(true);
-        else
-            setRampDelayEnable(false);
-#endif
-#ifdef Q_OS_LINUX
-        if(((id == ui->pbMox) || (id == pSdrCtrl)) && Tx)
-            setRampDelayEnable(true);
-        else
-            setRampDelayEnable(false);
-#endif
+ //       if(((id == ui->pbMox) || (id == pPanel) || (id == pSdrCtrl)) && Tx)
+ //           setRampDelayEnable(true);
+ //       else
+ //           setRampDelayEnable(false);
     }
 
     pGraph->pGl->SetTRxMode((TRXMODE)Tx);
@@ -4868,9 +4880,7 @@ void ExpertSDR_vA2_1::OnMox(bool Tx)
         SetTxFilter();
         tmpMicScale = DbToValMic(ui->slMic->value());
         OnMic(ui->slMic->value());
-#ifdef Q_OS_WIN
-        pPanel->onMox(Tx);
-#endif
+   //     pPanel->onMox(Tx);
         if(pOpt->ui.cbPaChannels->currentIndex() == 1)
             ui->swVolume->setCurrentIndex(1);
         else
@@ -4903,9 +4913,7 @@ void ExpertSDR_vA2_1::OnMox(bool Tx)
         ui->pbEqRx->setChecked(true);
         ui->pbTone->setChecked(false);
         pGraph->pGl->SpectrumEnable(true);
-#ifdef Q_OS_WIN
-        pPanel->onMox(Tx);
-#endif
+ //       pPanel->onMox(Tx);
         ui->swVolume->setCurrentIndex(0);
         onXvAntSwitch(0);
         pVoiceRec->setTrxMode(false);
@@ -6301,8 +6309,7 @@ void ExpertSDR_vA2_1::ChangeValcoder(int val)
     OnChangeMainFreq(delta);
 }
 
-#ifdef Q_OS_WIN
-bool ExpertSDR_vA2_1::winEvent(MSG *msg,long *result)
+/*bool ExpertSDR_vA2_1::winEvent(MSG *msg,long *result)
 {
     int msgType = msg->message;
     if(msgType == WM_DEVICECHANGE)
@@ -6320,8 +6327,7 @@ bool ExpertSDR_vA2_1::winEvent(MSG *msg,long *result)
         }
     }
     return false;
-}
-#endif
+} */
 
 int ExpertSDR_vA2_1::MainStep()
 {
@@ -7751,10 +7757,8 @@ void ExpertSDR_vA2_1::setLock(int flags)
         ui->pbFdown->setEnabled(false);
         ui->pbFlist->setEnabled(false);
         ui->pbFup->setEnabled(false);
-#ifdef Q_OS_WIN
-        disconnect(pPanel, SIGNAL(mainFreq(int)), this, SLOT(ChangeValcoder(int)));
-        disconnect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
-#endif
+//        disconnect(pPanel, SIGNAL(mainFreq(int)), this, SLOT(ChangeValcoder(int)));
+//        disconnect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
     }
     else
     {
@@ -7774,26 +7778,20 @@ void ExpertSDR_vA2_1::setLock(int flags)
         ui->pbFdown->setEnabled(true);
         ui->pbFlist->setEnabled(true);
         ui->pbFup->setEnabled(true);
-#ifdef Q_OS_WIN
-        connect(pPanel, SIGNAL(mainFreq(int)), this, SLOT(ChangeValcoder(int)));
-        connect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
-#endif
+//        connect(pPanel, SIGNAL(mainFreq(int)), this, SLOT(ChangeValcoder(int)));
+//        connect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
     }
     if(flags & LOCK_FILTER)
     {
         pGraph->pGl->SetLockFilter(true);
-#ifdef Q_OS_WIN
-        disconnect(pPanel, SIGNAL(filter(int)), this, SLOT(OnPanChangeFilter(int)));
-        disconnect(pPanel, SIGNAL(ifVal(int)), this, SLOT(OnPanIF(int)));
-#endif
+//        disconnect(pPanel, SIGNAL(filter(int)), this, SLOT(OnPanChangeFilter(int)));
+//        disconnect(pPanel, SIGNAL(ifVal(int)), this, SLOT(OnPanIF(int)));
     }
     else
     {
         pGraph->pGl->SetLockFilter(false);
-#ifdef Q_OS_WIN
-        connect(pPanel, SIGNAL(filter(int)), this, SLOT(OnPanChangeFilter(int)));
-        connect(pPanel, SIGNAL(ifVal(int)), this, SLOT(OnPanIF(int)));
-#endif
+//        connect(pPanel, SIGNAL(filter(int)), this, SLOT(OnPanChangeFilter(int)));
+//        connect(pPanel, SIGNAL(ifVal(int)), this, SLOT(OnPanIF(int)));
     }
     if(flags & LOCK_FILTER_BAND)
     {
@@ -7809,12 +7807,10 @@ void ExpertSDR_vA2_1::setLock(int flags)
         ui->pbF6->setEnabled(false);
         ui->pbF7->setEnabled(false);
         ui->pbF8->setEnabled(false);
-#ifdef Q_OS_WIN
-        disconnect(pPanel, SIGNAL(filterHigh(int)), this, SLOT(OnPanFilterHigh(int)));
-        disconnect(pPanel, SIGNAL(filterLow(int)), this, SLOT(OnPanFilterLow(int)));
-        disconnect(pPanel, SIGNAL(filterWidth(int)), this, SLOT(OnPanFilterWidth(int)));
-        disconnect(pPanel, SIGNAL(filterShift(int)), this, SLOT(OnPanFilterShift(int)));
-#endif
+//        disconnect(pPanel, SIGNAL(filterHigh(int)), this, SLOT(OnPanFilterHigh(int)));
+//        disconnect(pPanel, SIGNAL(filterLow(int)), this, SLOT(OnPanFilterLow(int)));
+//        disconnect(pPanel, SIGNAL(filterWidth(int)), this, SLOT(OnPanFilterWidth(int)));
+//        disconnect(pPanel, SIGNAL(filterShift(int)), this, SLOT(OnPanFilterShift(int)));
     }
     else
     {
@@ -7830,48 +7826,38 @@ void ExpertSDR_vA2_1::setLock(int flags)
         ui->pbF6->setEnabled(true);
         ui->pbF7->setEnabled(true);
         ui->pbF8->setEnabled(true);
-#ifdef Q_OS_WIN
-        connect(pPanel, SIGNAL(filterHigh(int)), this, SLOT(OnPanFilterHigh(int)));
-        connect(pPanel, SIGNAL(filterLow(int)), this, SLOT(OnPanFilterLow(int)));
-        connect(pPanel, SIGNAL(filterWidth(int)), this, SLOT(OnPanFilterWidth(int)));
-        connect(pPanel, SIGNAL(filterShift(int)), this, SLOT(OnPanFilterShift(int)));
-#endif
+//        connect(pPanel, SIGNAL(filterHigh(int)), this, SLOT(OnPanFilterHigh(int)));
+ //       connect(pPanel, SIGNAL(filterLow(int)), this, SLOT(OnPanFilterLow(int)));
+//        connect(pPanel, SIGNAL(filterWidth(int)), this, SLOT(OnPanFilterWidth(int)));
+//        connect(pPanel, SIGNAL(filterShift(int)), this, SLOT(OnPanFilterShift(int)));
     }
     if(flags & LOCK_BAND)
     {
         ui->widget_6->setEnabled(false);
         pSM->setLockBand(true);
         pSM->SetLockFreq(true);
-#ifdef Q_OS_WIN
-        disconnect(pPanel, SIGNAL(band(int)), this, SLOT(OnPanChangeBand(int)));
-        disconnect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
-#endif
+//        disconnect(pPanel, SIGNAL(band(int)), this, SLOT(OnPanChangeBand(int)));
+ //       disconnect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
     }
     else
     {
         ui->widget_6->setEnabled(true);
         pSM->setLockBand(false);
         pSM->SetLockFreq(false);
-#ifdef Q_OS_WIN
-        connect(pPanel, SIGNAL(band(int)), this, SLOT(OnPanChangeBand(int)));
-        connect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
-#endif
+//        connect(pPanel, SIGNAL(band(int)), this, SLOT(OnPanChangeBand(int)));
+//        connect(pPanel, SIGNAL(memory(int)), this, SLOT(OnPanChangeMemory(int)));
     }
     if(flags & LOCK_MODE)
     {
         ui->widget_5->setEnabled(false);
         pSM->setLockMode(true);
-#ifdef Q_OS_WIN
-        disconnect(pPanel, SIGNAL(mode(int)), this, SLOT(OnPanChangeMode(int)));
-#endif
+//        disconnect(pPanel, SIGNAL(mode(int)), this, SLOT(OnPanChangeMode(int)));
     }
     else
     {
         ui->widget_5->setEnabled(true);
         pSM->setLockMode(false);
-#ifdef Q_OS_WIN
-        connect(pPanel, SIGNAL(mode(int)), this, SLOT(OnPanChangeMode(int)));
-#endif
+//        connect(pPanel, SIGNAL(mode(int)), this, SLOT(OnPanChangeMode(int)));
     }
     if(flags & LOCK_MOX)
         ui->pbMox->setEnabled(false);
@@ -7920,16 +7906,12 @@ void ExpertSDR_vA2_1::setLock(int flags)
     if(flags & LOCK_PREAMP)
     {
         ui->pbPreamp->setEnabled(false);
-#ifdef Q_OS_WIN
-        disconnect(pPanel, SIGNAL(preamp(int)), this, SLOT(OnPanChangePreamp(int)));
-#endif
+ //       disconnect(pPanel, SIGNAL(preamp(int)), this, SLOT(OnPanChangePreamp(int)));
     }
     else
     {
         ui->pbPreamp->setEnabled(true);
-#ifdef Q_OS_WIN
-        connect(pPanel, SIGNAL(preamp(int)), this, SLOT(OnPanChangePreamp(int)));
-#endif
+//        connect(pPanel, SIGNAL(preamp(int)), this, SLOT(OnPanChangePreamp(int)));
     }
     if(flags & LOCK_VOICE)
     {
