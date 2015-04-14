@@ -4,7 +4,7 @@ git clone https://github.com/florintanasa/OpenExpertSDR
 
 To compile use:
 
- QtCreator with qt5
+ QtCreator with qt5 or qt4
 
 or from console after clone
 
@@ -14,7 +14,7 @@ qmake *.pro
 
 make
 
-or use cmake
+or use cmake only for qt5
 
 cd OpenExpertSDR
 
