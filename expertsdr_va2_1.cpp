@@ -6317,7 +6317,8 @@ void ExpertSDR_vA2_1::ChangeValcoder(int val)
     OnChangeMainFreq(delta);
 }
 
-/*bool ExpertSDR_vA2_1::winEvent(MSG *msg,long *result)
+#ifdef Q_OS_WIN
+bool ExpertSDR_vA2_1::winEvent(MSG *msg,long *result)
 {
     int msgType = msg->message;
     if(msgType == WM_DEVICECHANGE)
@@ -6335,7 +6336,8 @@ void ExpertSDR_vA2_1::ChangeValcoder(int val)
         }
     }
     return false;
-} */
+}
+#endif
 
 int ExpertSDR_vA2_1::MainStep()
 {
