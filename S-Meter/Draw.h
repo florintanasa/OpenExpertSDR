@@ -24,8 +24,16 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui>
+#include <QtGui/QWidget>
+#endif
+
 #define BUFF_SP 10
 
 class Draw : public QWidget

@@ -25,7 +25,15 @@
 
 #include <search.h>
 #include <string.h>
+
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+
 #include "ringBuf.h"
 #include "expertsdr_va2_1.h"
 

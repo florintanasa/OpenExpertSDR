@@ -21,6 +21,8 @@
  * The authors can be reached by email at maksimus1210@gmail.com
  */
 
+#include <QtGlobal>
+
 #include "WdgMem.h"
 
 WdgMem::WdgMem(int *MainFreq, QButtonGroup *pMode, QWidget *parent) : QWidget(parent)
@@ -39,10 +41,15 @@ WdgMem::WdgMem(int *MainFreq, QButtonGroup *pMode, QWidget *parent) : QWidget(pa
 	ui.leComment->addAction(m_pEditorFocusAction);
 	ui.twMem->setSelectionBehavior(QAbstractItemView::SelectRows);
 	ui.twMem->horizontalHeader()->setStretchLastSection(true);
-//	ui.twMem->horizontalHeader()->setMovable(true);
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     ui.twMem->horizontalHeader()->setSectionsMovable(true);
-//    ui.twMem->horizontalHeader()->setResizeMode(QHeaderView::Interactive);
     ui.twMem->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+#else
+    ui.twMem->horizontalHeader()->setMovable(true);
+    ui.twMem->horizontalHeader()->setResizeMode(QHeaderView::Interactive);
+#endif
+
     ui.twMem->horizontalHeader()->setMinimumHeight(20);
 	connect(ui.pbMemory, SIGNAL(clicked()), this, SLOT(OnThisMemory()));
 	connect(ui.twMem, SIGNAL(cellDoubleClicked (int, int)), this, SLOT(OnTwDoubleClick(int, int)));

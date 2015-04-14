@@ -23,8 +23,16 @@
 #ifndef PLUGINCTRL_H
 #define PLUGINCTRL_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui>
+#include <QtGui/QWidget>
+#endif
+
 #  if defined (__GNUC__) && defined(__unix__)
 typedef unsigned char  BYTE;
 typedef unsigned short  WORD;

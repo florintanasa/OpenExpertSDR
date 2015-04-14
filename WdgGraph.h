@@ -24,7 +24,14 @@
 #ifndef WDGGRAPH_H
 #define WDGGRAPH_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui/QWidget>
+#endif
+
 #include "Panarama.h"
 #include "Options.h"
 #include "ui_WdgGraph.h"

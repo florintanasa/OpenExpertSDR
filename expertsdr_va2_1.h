@@ -2,13 +2,22 @@
 #define EXPERTSDR_VA2_1_H
 
 #include <search.h>
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
+#include <QtWidgets/QWidget>
+#include <QtConcurrent/qtconcurrentrun.h>
+#else
+#include <QtGui>
+#include <QtGui/QWidget>
+#include <qtconcurrentrun.h>
+#endif
+
 #include <QMainWindow>
+#include <QActionGroup>
 #include <QList>
 #include <QMenu>
-#include <QtWidgets/QWidget>
-#include <QActionGroup>
-#include <QtConcurrent/qtconcurrentrun.h>
 
 #include "FreqScale/Didgit.h"
 #include "Options.h"

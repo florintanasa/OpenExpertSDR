@@ -24,8 +24,14 @@
 #ifndef CATMANAGER_H
 #define CATMANAGER_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets/QWidget>
-//#include "ExtSerialPort/qextserialport.h"
+#else
+#include <QtGui/QWidget>
+#endif
+
 #include "Cat/QextSerialPort/qextserialport.h"
 #include "../expertsdr_va2_1.h"
 #include "expertsdr_va2_1.h"

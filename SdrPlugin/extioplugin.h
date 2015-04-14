@@ -1,8 +1,15 @@
 #ifndef EXTIOPLUGIN_H
 #define EXTIOPLUGIN_H
 
-#include <QObject>
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+
+#include <QObject>
 #include "Defines.h"
 #  if defined (__GNUC__) && defined(__unix__)
 typedef void (*ExtIO_ShowGUI)();

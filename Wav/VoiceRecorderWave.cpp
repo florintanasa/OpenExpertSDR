@@ -20,6 +20,7 @@
  * Copyright (C) 2012 Valery Mikhaylovsky
  * The authors can be reached by email at maksimus1210@gmail.com
  */
+#include <QtGlobal>
 
 #include "VoiceRecorderWave.h"
 #include <cstring>
@@ -102,15 +103,23 @@ bool VoiceRecorder::onRec(bool state)
 		unsigned long file_sz = waveFile.size();
 		QString str;
 		str = "RIFF";
-        //qMemCopy(wavHeader.riff, str.toAscii().data(), 4);
-        std::memcpy(wavHeader.riff, str.toLatin1().data(), 4);
-        wavHeader.chunkSize = file_sz - 8;
-		str = "WAVE";
-        //qMemCopy(wavHeader.wave, str.toAscii().data(), 4);
-        std::memcpy(wavHeader.wave, str.toLatin1().data(), 4);
+        str = "WAVE";
         str = "fmt ";
-        //qMemCopy(wavHeader.fmt, str.toAscii().data(), 4);
+        str = "data";
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+        std::memcpy(wavHeader.riff, str.toLatin1().data(), 4);
+        std::memcpy(wavHeader.wave, str.toLatin1().data(), 4);
         std::memcpy(wavHeader.fmt, str.toLatin1().data(), 4);
+        std::memcpy(wavHeader.subchunk2ID, str.toLatin1().data(), 4);
+#else
+        qMemCopy(wavHeader.riff, str.toAscii().data(), 4);
+        qMemCopy(wavHeader.wave, str.toAscii().data(), 4);
+        qMemCopy(wavHeader.fmt, str.toAscii().data(), 4);
+        qMemCopy(wavHeader.subchunk2ID, str.toAscii().data(), 4);
+#endif
+
+        wavHeader.chunkSize = file_sz - 8;
         wavHeader.subchunk1Size = 16;
 		wavHeader.audioFormat = IEEE_FLOAT;
 		wavHeader.channels = 2;
@@ -118,9 +127,7 @@ bool VoiceRecorder::onRec(bool state)
 		wavHeader.bitsPerSample = 32;
 		wavHeader.bytesPerSec = samplesPerSec*wavHeader.channels*wavHeader.bitsPerSample/8;
 		wavHeader.blockAlign = wavHeader.channels * ((wavHeader.bitsPerSample + 7) / 8);
-		str = "data";
-        //qMemCopy(wavHeader.subchunk2ID, str.toAscii().data(), 4);
-        std::memcpy(wavHeader.subchunk2ID, str.toUtf8().data(), 4);
+
         wavHeader.subchunk2Size = file_sz - sizeof(WAVHEADER_V);
 		waveFile.seek(0);
 		waveFile.write(reinterpret_cast<char *>(&wavHeader), sizeof(wavHeader));

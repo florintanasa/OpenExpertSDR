@@ -21,6 +21,9 @@
  * The authors can be reached by email at maksimus1210@gmail.com
  */
 
+
+#include <QtGlobal>
+
 #include "Resampler.h"
 #include <cstring>
 
@@ -347,14 +350,17 @@ bool FirLP::initialize(float Scale, float Astop, float Fpass, float Fstop, float
 	for (n = 0; n < Taps; n++)
 		Coef[n+Taps] = Coef[n];
 
-//	qMemCopy(ICoef, Coef, sizeof(float)*Taps*2);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     std::memcpy(ICoef, Coef, sizeof(float)*Taps*2);
-//	qMemCopy(QCoef, Coef, sizeof(float)*Taps*2);
     std::memcpy(QCoef, Coef, sizeof(float)*Taps*2);
-//    qMemSet(rZBuf, 0, sizeof(float)*Taps);
     std::memset(rZBuf, 0, sizeof(float)*Taps);
-//    qMemSet(cZBuf, 0, sizeof(COMPLEX)*Taps);
     std::memset(cZBuf, 0, sizeof(COMPLEX)*Taps);
+#else
+    qMemCopy(ICoef, Coef, sizeof(float)*Taps*2);
+    qMemCopy(QCoef, Coef, sizeof(float)*Taps*2);
+    qMemSet(rZBuf, 0, sizeof(float)*Taps);
+    qMemSet(cZBuf, 0, sizeof(COMPLEX)*Taps);
+#endif
 
     isOk = true;
 	mutex.unlock();

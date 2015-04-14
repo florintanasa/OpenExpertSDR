@@ -1493,7 +1493,7 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
 
 ExpertSDR_vA2_1::~ExpertSDR_vA2_1()
 {
-    delete ui;
+//    delete ui;
     delete pVfoB;
     delete pAudThr;
     delete pCalibrator;

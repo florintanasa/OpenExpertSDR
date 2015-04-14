@@ -24,8 +24,16 @@
 #ifndef NUMBER2_H
 #define NUMBER2_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui>
+#include <QtGui/QWidget>
+#endif
+
 #include "ui_Number2.h"
 
 class Number2 : public QWidget

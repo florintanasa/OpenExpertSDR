@@ -24,8 +24,16 @@
 #ifndef S_METER_H
 #define S_METER_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui>
+#include <QtGui/QWidget>
+#endif
+
 #include "ui_S_Meter.h"
 #include "Draw.h"
 #include "Number.h"

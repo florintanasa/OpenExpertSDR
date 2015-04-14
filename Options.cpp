@@ -20,6 +20,7 @@
  * Copyright (C) 2012 Valery Mikhaylovsky
  * The authors can be reached by email at maksimus1210@gmail.com
  */
+#include <QtGlobal>
 
 #include "Options.h"
 #include "SdrPlugin/PluginCtrl.h"
@@ -36,8 +37,12 @@ Options::Options(QWidget *parent) : QWidget(parent)
 	ui.tbSDR->setCurrentIndex(0);
 	ui.SwMain->setCurrentIndex(0);
 
-    //QString DocumentsLocation = QDesktopServices::storageLocation(QDesktopServices:: DocumentsLocation);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QString DocumentsLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+#else
+    QString DocumentsLocation = QDesktopServices::storageLocation(QDesktopServices:: HomeLocation);
+#endif
+
 	QDir dir;
 
 	if(dir.exists(DocumentsLocation))
@@ -92,7 +97,7 @@ Options::Options(QWidget *parent) : QWidget(parent)
        }
 
 
-    #ifdef Q_OS_UNIX
+    #ifdef Q_OS_LINUX
         pPttPort = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
         pKeyPort = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
         pAddKeyPort = new QextSerialPort("/dev/ttyS0", QextSerialPort::EventDriven);
@@ -100,7 +105,7 @@ Options::Options(QWidget *parent) : QWidget(parent)
        pPttPort = new QextSerialPort("COM1", QextSerialPort::EventDriven);
        pKeyPort = new QextSerialPort("COM1", QextSerialPort::EventDriven);
        pAddKeyPort = new QextSerialPort("COM1", QextSerialPort::EventDriven);
-    #endif /*Q_OS_UNIX*/
+    #endif /*Q_OS_LINUX*/
 
     connect(pPttPort, SIGNAL(dsrChanged(bool)), this, SLOT(OnPttDsr(bool)));
     connect(pPttPort, SIGNAL(ctsChanged(bool)), this, SLOT(OnPttCts(bool)));

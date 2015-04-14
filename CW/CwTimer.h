@@ -26,7 +26,14 @@
 
 
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+
 
 #ifdef Q_OS_WIN
 #include "qt_windows.h"

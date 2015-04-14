@@ -24,20 +24,23 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QStandardPaths>
+#endif
+
 #include <QWidget>
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QDebug>
-#include <QStandardPaths>
 #include <QFileDialog>
 #include <QProcess>
 #include <QFileInfo>
 #include "ui_Options.h"
 #include <QSysInfo>
-//#include <QSerialPort>
 
 #include "Defines.h"
-//#include "Cat/ExtSerialPort/qextserialport.h"
 #include "Cat/QextSerialPort/qextserialport.h"
 #include "Cat/QextSerialPort/qextserialenumerator.h"
 

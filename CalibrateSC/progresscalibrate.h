@@ -24,7 +24,14 @@
 #ifndef PROGRESSCALIBRATE_H
 #define PROGRESSCALIBRATE_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui/QWidget>
+#endif
+
 #include "ui_progresscalibrate.h"
 
 class ProgressCalibrate : public QWidget

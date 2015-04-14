@@ -24,7 +24,14 @@
 #ifndef SCALE_H
 #define SCALE_H
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets/QWidget>
+#else
+#include <QtGui/QWidget>
+#endif
+
 #include "ui_Scale.h"
 #include "ScaleNum.h"
 
