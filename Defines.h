@@ -25,10 +25,13 @@
 #define DEFINES_H_
 
 #include <QString>
+
+#ifdef Q_OS_LINUX
 typedef unsigned char  BYTE; // 1byte
 typedef unsigned short  WORD; // 2bytes
 typedef unsigned long  DWORD; //4bytes
 typedef int BOOLEAN;
+#endif
 
 #define MAX_DSP_BUFFER_SIZE 4096
 

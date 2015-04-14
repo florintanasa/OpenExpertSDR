@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui serialport opengl
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -61,11 +61,9 @@ SOURCES += main.cpp\
         RingResampler/RingBuffer.cpp \
         Cat/CatManager.cpp \
         Options.cpp
-#       Cat/ExtSerialPort/qextserialbase.cpp \
-#        Cat/ExtSerialPort/qextserialenumerator.cpp \
-#        Cat/ExtSerialPort/qextserialport.cpp \
-#       Cat/ExtSerialPort/win_qextserialport.cpp \
 
+win32:SOURCES += Valcoder/HID/Ea1dev.cpp \
+                 Valcoder/Panel.cpp
 
 HEADERS  += expertsdr_va2_1.h \
             FreqScale/Didgit.h \
@@ -115,12 +113,11 @@ HEADERS  += expertsdr_va2_1.h \
             RingResampler/RingBuffer.h \
             Cat/CatManager.h \
             Options.h
-#            Cat/ExtSerialPort/qextserialbase.h \
-#            Cat/ExtSerialPort/qextserialenumerator.h \
-#            Cat/ExtSerialPort/qextserialport.h \
-#            Cat/ExtSerialPort/win_qextserialport.h \
 
+win32:HEADERS += Valcoder/HID/Ea1dev.h \
+                 Valcoder/Panel.h
 
+unix {
 FORMS    += expertsdr_va2_1.ui \
             PanoramOpt.ui \
             SmeterGUI/SMeterOptions.ui \
@@ -138,11 +135,39 @@ FORMS    += expertsdr_va2_1.ui \
             WdgAddStation.ui \
             WdgMem.ui \
             Options.ui
+}
+
+win32 {
+FORMS    += expertsdr_va2_1.ui \
+            PanoramOpt.ui \
+            SmeterGUI/SMeterOptions.ui \
+            scale/Scale.ui \
+            S-Meter/Number2.ui \
+            S-Meter/Number.ui \
+            S-Meter/S_Meter.ui \
+            Wav/fileList.ui \
+            Wav/wavSample.ui \
+            CalibrateSC/Calibrator/Calibrator.ui \
+            CalibrateSC/progresscalibrate.ui \
+            CW/CwMacro.ui \
+            About.ui \
+            WdgGraph.ui \
+            WdgAddStation.ui \
+            WdgMem.ui \
+            Options.ui \
+            Valcoder/Panel.ui
+}
 
 RESOURCES += images.qrc \
-            bg.qrc
+             bg.qrc
 
 #LIBS +=  -lDttSP -lGLU -lportaudio -lpthread -lm -lfftw3f -lm
-
-LIBS +=  -lGLU -lportaudio
+debug {
+win32:LIBS += -lhid -lwinmm -lsetupapi -lglu32 -L"$$_PRO_FILE_PWD_/debug/" -lportaudio_x86 libwsock32
+unix:LIBS +=  -lGLU -lportaudio
+}
+release {
+win32:LIBS += -lhid -lwinmm -lsetupapi -lglu32 -L"$$_PRO_FILE_PWD_/release/" -lportaudio_x86 libwsock32
+unix:LIBS +=  -lGLU -lportaudio
+}
 QMAKE_CXXFLAGS += -Wno-unused-function

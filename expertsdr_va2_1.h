@@ -29,7 +29,9 @@
 #include "FreqScale/Didgit.h"
 #include "SdrPlugin/SdrPlugin.h"
 #include "SdrPlugin/PortAudio/pa19.h"
-//#include "Valcoder/Panel.h"
+#ifdef Q_OS_WIN
+#include "Valcoder/Panel.h"
+#endif
 #include "CalibrateSC/progresscalibrate.h"
 #include "CalibrateSC/Calibrator/Calibrator.h"
 #include "Cat/CatManager.h"
@@ -169,10 +171,12 @@ private:
     bool    VacEnable;
     PLUGIN_OPTIONS VacOpt;
     pa19	*pPaVac;
-//    bool winEvent(MSG *msg, long *result);
+#ifdef Q_OS_WIN
+    bool winEvent(MSG *msg, long *result);
+    Panel *pPanel;
+#endif
     int  UpdatesTimerID;
     QAbstractEventDispatcher * m_EvtDispatch;
-    //Panel *pPanel;
     QextSerialPort 	*pPort;
     S_Meter 		*pSM;
     QButtonGroup 	*pTxSplitPb;

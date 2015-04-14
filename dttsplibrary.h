@@ -3,9 +3,9 @@
 
 #include <QLibrary>
 #include "Defines.h"
-#ifdef _MSC_VER // Windows
+#ifdef Q_OS_WIN // Windows
 #include "qt_windows.h"
-#endif /*_MSC_VER*/
+#endif /*Q_OS_WIN*/
 
 typedef enum _swchstate {
   SWCH_FALL,
