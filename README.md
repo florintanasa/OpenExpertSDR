@@ -4,7 +4,7 @@ git clone https://github.com/florintanasa/OpenExpertSDR
 
 To compile use:
 
- QtCreator with qt5 or qt4
+ QtCreator with qt5 or qt4 and for windows use mingw from http://www.mingw.org/ not from qt.
 
 or from console after clone
 
