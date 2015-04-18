@@ -243,14 +243,19 @@ QString Options::getWaveFilesDirLocationDefault()
 void Options::SetupPluginList()
 {
 	QString plugin_dir = QDir::currentPath() + "/device";
+#ifdef Q_OS_LINUX
     QDir plug_dir(plugin_dir, "*.so", QDir::Name, QDir::Files | QDir::Hidden | QDir::System);
-
+#endif 
+#ifdef Q_OS_WIN
+    QDir plug_dir(plugin_dir, "*.dll", QDir::Name, QDir::Files | QDir::Hidden | QDir::System);
+#endif
 	for(uint i = 0; i < plug_dir.count(); i++)
 	{
 		QString libpath = plugin_dir + "/" + plug_dir[i];
 		QString InfoStr = "";
+//		QString InfoStr = plug_dir[i];
 
-//		if(pluginCtrl::getInfo(libpath, InfoStr))
+		if(pluginCtrl::getInfo(libpath, InfoStr))
 			ui.cbSdrType->addItem(InfoStr, libpath);
 	}
 }

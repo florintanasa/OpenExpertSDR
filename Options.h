@@ -39,6 +39,7 @@
 #include <QFileInfo>
 #include "ui_Options.h"
 #include <QSysInfo>
+#include <QDir>
 
 #include "Defines.h"
 #include "Cat/QextSerialPort/qextserialport.h"
