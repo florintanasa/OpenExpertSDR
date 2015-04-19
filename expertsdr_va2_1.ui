@@ -444,7 +444,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lbDate">
         <property name="font">
          <font>
-          <pointsize>8</pointsize>
+          <pointsize>9</pointsize>
          </font>
         </property>
         <property name="toolTip">
@@ -471,7 +471,7 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="font">
          <font>
-          <pointsize>7</pointsize>
+          <pointsize>9</pointsize>
          </font>
         </property>
         <property name="toolTip">
@@ -520,7 +520,7 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="font">
          <font>
-          <pointsize>8</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="toolTip">

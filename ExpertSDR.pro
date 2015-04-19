@@ -159,7 +159,9 @@ FORMS    += expertsdr_va2_1.ui \
 }
 
 RESOURCES += images.qrc \
-             bg.qrc
+             bg.qrc \
+             font.qrc \
+    icon_app.qrc
 
 #LIBS +=  -lDttSP -lGLU -lportaudio -lpthread -lm -lfftw3f -lm
 debug {

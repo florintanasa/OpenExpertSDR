@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/font/Times_New_Roman.ttf</file>
+    </qresource>
+</RCC>
