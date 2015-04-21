@@ -13,6 +13,8 @@ TEMPLATE = app
 
 include(Cat/QextSerialPort/qextserialport.pri)
 
+TRANSLATIONS = ExpertSDR_ru.ts
+
 SOURCES += main.cpp\
         expertsdr_va2_1.cpp \
         FreqScale/Didgit.cpp \
@@ -44,7 +46,6 @@ SOURCES += main.cpp\
         CalibrateSC/Calibrator/Calibrator.cpp \
         CalibrateSC/progresscalibrate.cpp \
         Logger/VLogger.cpp \
-        Logger/VLogger.h \
         CW/CwCore.cpp \
         CW/CwMacro.cpp \
         CW/CwTimer.cpp \
@@ -97,6 +98,7 @@ HEADERS  += expertsdr_va2_1.h \
             CalibrateSC/Calibrator/CalibrProc.h \
             CalibrateSC/Calibrator/Calibrator.h \
             CalibrateSC/progresscalibrate.h \
+            Logger/VLogger.h \
             CW/CwCore.h \
             CW/CwMacro.h \
             CW/CwTimer.h \
