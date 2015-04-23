@@ -91,7 +91,7 @@ qt5_wrap_ui(expertsdr_SRC expertsdr_va2_1.ui
             Options.ui
 )
 
-SET(expertsdr_RESOURCES images.qrc bg.qrc)
+SET(expertsdr_RESOURCES images.qrc bg.qrc font.qrc icon_app.qrc)
 
 qt5_ADD_RESOURCES(expertsdr_RESOURCES_RCC ${expertsdr_RESOURCES})
 
