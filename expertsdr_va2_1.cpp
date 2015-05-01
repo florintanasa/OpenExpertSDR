@@ -16,6 +16,7 @@
 #include <QtCore>
 #include <QtGlobal>
 #include <QFontDatabase>
+#include <QShortcut>
 
 int crBand = 0;
 int crMode = 0;
@@ -3931,6 +3932,7 @@ void ExpertSDR_vA2_1::OnChangeMode(int Mode)
 {
     pModeBut->button(Mode)->setChecked(true);
     sdrMode = (SDRMODE)Mode;
+    qDebug() << "ExpertSDR: OnChangeMode( " << Mode << " )";
     if((Mode == CWL) || (Mode == CWU) || (Mode == DIGL) || (Mode == DIGU) || (Mode == SPEC) || (ui->pbVac->isChecked()))
     {
         pVoiceRec->Stop();
@@ -4076,6 +4078,7 @@ void ExpertSDR_vA2_1::OnChangeMode(int Mode)
     SetFreq(pGraph->pGl->GetDDSFreq() + pGraph->pGl->GetFilter());
     OnChangeFilter(OptBands[CurrentBandIndex].Mode[Mode].FilterIndex);
     emit ModeChanged(Mode);
+
 }
 
 void ExpertSDR_vA2_1::OnChangeFilter(int Filter)
@@ -8005,5 +8008,166 @@ void ExpertSDR_vA2_1::changedVfoBDown()
     pVfoB->setValue(vfoBVal[numBandVfoB]);
 }
 
+//key assign for panel or shortcut with keyboard
+void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_N:
+        OnPanChangeNb();
+        break;
+    case Qt::Key_0:
+        OnChangeBand(0);// 160m
+        break;
+    case Qt::Key_1:
+        OnChangeBand(1);// 80m
+        break;
+    case Qt::Key_2:
+        OnChangeBand(2);// 60m
+        break;
+    case Qt::Key_3:
+        OnChangeBand(3);// 40m
+        break;
+    case Qt::Key_4:
+        OnChangeBand(4);// 30m
+        break;
+    case Qt::Key_5:
+        OnChangeBand(5);// 20m
+        break;
+    case Qt::Key_6:
+        OnChangeBand(6);// 17m
+        break;
+    case Qt::Key_7:
+        OnChangeBand(7);// 15m
+        break;
+    case Qt::Key_8:
+        OnChangeBand(8);// 12m
+        break;
+    case Qt::Key_9:
+        OnChangeBand(9);// 10m
+        break;
+    case Qt::Key_Asterisk:
+        OnChangeBand(10);// 6m
+        break;
+    case Qt::Key_Q:
+        OnChangeMode(6);//AM
+        break;
+    case Qt::Key_W:
+        OnChangeMode(10);//SAM
+        break;
+    case Qt::Key_E:
+        OnChangeMode(2);//DSB
+        break;
+    case Qt::Key_R:
+        OnChangeMode(0);//LSB
+        break;
+    case Qt::Key_T:
+        OnChangeMode(1);//USB
+        break;
+    case Qt::Key_Y:
+        OnChangeMode(3);//CWL
+        break;
+    case Qt::Key_U:
+        OnChangeMode(4);//CWU
+        break;
+    case Qt::Key_I:
+        OnChangeMode(5);//NFM
+        break;
+    case Qt::Key_O:
+        OnChangeMode(8);//SPEC
+        break;
+    case Qt::Key_P:
+        OnChangeMode(9);//DIGL
+        break;
+    case Qt::Key_BracketLeft:
+        OnChangeMode(7);//DIGU
+        break;
+    case Qt::Key_BracketRight:
+        OnChangeMode(11);//DRM
+        break;
+    case Qt::Key_A://volume up
+    {
+        int Vol = ui->slVol->value();
+        if (Vol<=100)
+        Vol++;
+        else
+            Vol=100;
+        ui->slVol->setValue(Vol);
+    }
+        break;
+    case Qt::Key_S://volume down
+    {
+        int Vol = ui->slVol->value();
+        if (Vol>0)
+        Vol--;
+        else
+            Vol=0;
+        ui->slVol->setValue(Vol);
+     }
+        break;
+    case Qt::Key_D://Agc up
+    {
+        int Agc = ui->slAgc->value();
+        if (Agc<=120)
+            Agc++;
+        else
+            Agc = 120;
+        ui->slAgc->setValue(Agc);
+    }
+        break;
+    case Qt::Key_F://Agc down
+    {
+        int Agc = ui->slAgc->value();
+        if (Agc>-20)
 
+            Agc--;
+        else
+            Agc = -20;
+        ui->slAgc->setValue(Agc);
+    }
+        break;
+    case Qt::Key_G://Drive up
+    {
+        int Drive = ui->slDrive->value();
+        if (Drive<=10000)
+            Drive +=50;
+        else
+            Drive = 10000;
+        ui->slDrive->setValue(Drive);
+    }
+        break;
+    case Qt::Key_H://Drive down
+    {
+        int Drive = ui->slDrive->value();
+        if (Drive>0)
+            Drive -=50;
+        else
+            Drive = 0;
+        ui->slDrive->setValue(Drive);
+    }
+        break;
+    case Qt::Key_J://Mic up
+    {
+        int Mic = ui->slMic->value();
+        if (Mic<=70)
+            Mic++;
+        else
+            Mic = 70;
+        ui->slMic->setValue(Mic);
+    }
+        break;
+    case Qt::Key_K://Mic down
+    {
+        int Mic = ui->slMic->value();
+        if (Mic>0)
+            Mic--;
+        else
+            Mic = 0;
+        ui->slMic->setValue(Mic);
+    }
+        break;
+    default:
+        break;
+    }
+
+}
 
