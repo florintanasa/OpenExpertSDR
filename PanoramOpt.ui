@@ -38,7 +38,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -128,7 +128,7 @@
         <rect>
          <x>10</x>
          <y>130</y>
-         <width>181</width>
+         <width>171</width>
          <height>17</height>
         </rect>
        </property>
@@ -144,7 +144,7 @@
         <rect>
          <x>10</x>
          <y>100</y>
-         <width>181</width>
+         <width>221</width>
          <height>17</height>
         </rect>
        </property>
@@ -193,9 +193,9 @@
       <widget class="QLabel" name="label_80">
        <property name="geometry">
         <rect>
-         <x>190</x>
+         <x>170</x>
          <y>220</y>
-         <width>111</width>
+         <width>131</width>
          <height>16</height>
         </rect>
        </property>
@@ -206,8 +206,8 @@
       <widget class="QGroupBox" name="groupBox">
        <property name="geometry">
         <rect>
-         <x>189</x>
-         <y>6</y>
+         <x>270</x>
+         <y>10</y>
          <width>301</width>
          <height>191</height>
         </rect>
@@ -234,7 +234,7 @@
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page">
            <widget class="QLabel" name="label_106">
@@ -485,7 +485,7 @@
         <rect>
          <x>10</x>
          <y>160</y>
-         <width>175</width>
+         <width>221</width>
          <height>17</height>
         </rect>
        </property>
@@ -575,7 +575,7 @@
         <rect>
          <x>190</x>
          <y>42</y>
-         <width>91</width>
+         <width>111</width>
          <height>17</height>
         </rect>
        </property>
@@ -605,7 +605,7 @@
         <rect>
          <x>10</x>
          <y>20</y>
-         <width>51</width>
+         <width>71</width>
          <height>16</height>
         </rect>
        </property>
@@ -660,7 +660,7 @@
         <rect>
          <x>10</x>
          <y>80</y>
-         <width>71</width>
+         <width>81</width>
          <height>16</height>
         </rect>
        </property>
@@ -689,7 +689,7 @@
         <rect>
          <x>260</x>
          <y>75</y>
-         <width>71</width>
+         <width>91</width>
          <height>17</height>
         </rect>
        </property>
@@ -705,7 +705,7 @@
         <rect>
          <x>260</x>
          <y>50</y>
-         <width>61</width>
+         <width>71</width>
          <height>17</height>
         </rect>
        </property>
@@ -721,7 +721,7 @@
         <rect>
          <x>260</x>
          <y>20</y>
-         <width>81</width>
+         <width>101</width>
          <height>21</height>
         </rect>
        </property>
@@ -768,7 +768,7 @@
         <rect>
          <x>260</x>
          <y>110</y>
-         <width>81</width>
+         <width>101</width>
          <height>16</height>
         </rect>
        </property>
@@ -865,7 +865,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_89">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>22</y>
          <width>41</width>
          <height>21</height>
@@ -878,7 +878,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="WdgFilter1Color" native="true">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>110</x>
          <y>20</y>
          <width>50</width>
          <height>25</height>
@@ -888,7 +888,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="WdgBand1Color" native="true">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>110</x>
          <y>60</y>
          <width>50</width>
          <height>25</height>
@@ -898,7 +898,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="WdgPitchColor1" native="true">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>110</x>
          <y>100</y>
          <width>50</width>
          <height>25</height>
@@ -908,7 +908,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_96">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>101</y>
          <width>91</width>
          <height>21</height>
@@ -921,7 +921,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="WdgPitchColor2" native="true">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>320</x>
          <y>100</y>
          <width>50</width>
          <height>25</height>
@@ -957,7 +957,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="WdgBand2Color" native="true">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>320</x>
          <y>60</y>
          <width>50</width>
          <height>25</height>
@@ -967,7 +967,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="WdgFilter2Color" native="true">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>320</x>
          <y>20</y>
          <width>50</width>
          <height>25</height>
@@ -1041,9 +1041,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_101">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>62</y>
-         <width>91</width>
+         <width>101</width>
          <height>21</height>
         </rect>
        </property>
@@ -1056,7 +1056,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>210</x>
          <y>62</y>
-         <width>91</width>
+         <width>101</width>
          <height>21</height>
         </rect>
        </property>
@@ -1067,7 +1067,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QComboBox" name="cbStepFilter">
        <property name="geometry">
         <rect>
-         <x>434</x>
+         <x>450</x>
          <y>21</y>
          <width>69</width>
          <height>22</height>
@@ -1122,9 +1122,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_9">
        <property name="geometry">
         <rect>
-         <x>370</x>
+         <x>380</x>
          <y>24</y>
-         <width>61</width>
+         <width>71</width>
          <height>16</height>
         </rect>
        </property>
@@ -1476,7 +1476,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="sbWfMinOffset">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>90</x>
          <y>110</y>
          <width>71</width>
          <height>22</height>
@@ -1498,7 +1498,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="sbHysteresis">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>90</x>
          <y>160</y>
          <width>71</width>
          <height>22</height>
@@ -1523,7 +1523,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="sbWfMaxOffset">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>90</x>
          <y>80</y>
          <width>71</width>
          <height>22</height>
@@ -1550,7 +1550,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>112</y>
-         <width>60</width>
+         <width>71</width>
          <height>21</height>
         </rect>
        </property>
@@ -1563,7 +1563,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>160</y>
-         <width>60</width>
+         <width>71</width>
          <height>21</height>
         </rect>
        </property>
@@ -1593,7 +1593,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>10</x>
          <y>80</y>
-         <width>60</width>
+         <width>71</width>
          <height>21</height>
         </rect>
        </property>
@@ -1606,7 +1606,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>260</x>
          <y>80</y>
-         <width>60</width>
+         <width>71</width>
          <height>21</height>
         </rect>
        </property>
@@ -1636,7 +1636,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>260</x>
          <y>110</y>
-         <width>60</width>
+         <width>71</width>
          <height>21</height>
         </rect>
        </property>
@@ -1647,7 +1647,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="sbSpMinOffset">
        <property name="geometry">
         <rect>
-         <x>330</x>
+         <x>340</x>
          <y>110</y>
          <width>71</width>
          <height>22</height>
@@ -1669,7 +1669,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="sbSpMaxOffset">
        <property name="geometry">
         <rect>
-         <x>330</x>
+         <x>340</x>
          <y>80</y>
          <width>71</width>
          <height>22</height>
@@ -1730,7 +1730,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QSpinBox" name="sbSampleAveraging">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>280</x>
          <y>22</y>
          <width>71</width>
          <height>22</height>
@@ -1748,7 +1748,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>170</x>
          <y>22</y>
-         <width>91</width>
+         <width>111</width>
          <height>21</height>
         </rect>
        </property>

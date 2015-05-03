@@ -28,7 +28,7 @@
   <widget class="QWidget" name="cdSmScaleNum" native="true">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>260</x>
      <y>46</y>
      <width>50</width>
      <height>25</height>
@@ -468,7 +468,7 @@
   <widget class="QWidget" name="cdSmLinesLow" native="true">
    <property name="geometry">
     <rect>
-     <x>85</x>
+     <x>100</x>
      <y>46</y>
      <width>50</width>
      <height>25</height>
@@ -944,7 +944,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>329</x>
      <y>84</y>
-     <width>101</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -961,7 +961,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>169</x>
      <y>50</y>
-     <width>71</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
@@ -976,7 +976,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmLinesHigh" native="true">
    <property name="geometry">
     <rect>
-     <x>85</x>
+     <x>100</x>
      <y>80</y>
      <width>50</width>
      <height>25</height>
@@ -1419,7 +1419,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>260</x>
      <y>126</y>
      <width>50</width>
      <height>25</height>
@@ -1859,7 +1859,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmCursorBorderColor" native="true">
    <property name="geometry">
     <rect>
-     <x>85</x>
+     <x>100</x>
      <y>160</y>
      <width>50</width>
      <height>25</height>
@@ -2338,7 +2338,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>169</x>
      <y>164</y>
-     <width>61</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
@@ -2356,7 +2356,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>260</x>
      <y>160</y>
      <width>50</width>
      <height>25</height>
@@ -2830,7 +2830,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmCursorColor" native="true">
    <property name="geometry">
     <rect>
-     <x>85</x>
+     <x>100</x>
      <y>126</y>
      <width>50</width>
      <height>25</height>
@@ -3270,7 +3270,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmLimitColor" native="true">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>450</x>
      <y>120</y>
      <width>50</width>
      <height>25</height>
@@ -3715,7 +3715,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>169</x>
      <y>130</y>
-     <width>61</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
@@ -3730,7 +3730,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmBackTopColor" native="true">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>450</x>
      <y>46</y>
      <width>50</width>
      <height>25</height>
@@ -4170,7 +4170,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmDbmNum" native="true">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>260</x>
      <y>80</y>
      <width>50</width>
      <height>25</height>
@@ -4645,7 +4645,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>10</x>
      <y>164</y>
-     <width>71</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
@@ -4662,7 +4662,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>168</x>
      <y>84</y>
-     <width>71</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
@@ -4677,7 +4677,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="cdSmBackBottColor" native="true">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>450</x>
      <y>80</y>
      <width>50</width>
      <height>25</height>
