@@ -45,6 +45,7 @@
 #include "CalibrateSC/Calibrator/Calibrator.h"
 #include "Wav/VoiceRecorderWave.h"
 #include "Timer/Timer.h"
+#include "PanaramDefines.h"
 
 using namespace QtConcurrent;
 

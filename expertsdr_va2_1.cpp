@@ -8013,74 +8013,74 @@ void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
 
-    case Qt::Key_0:
-        OnChangeBand(0);// 160m
+    case Qt::Key_0:// Change to band 160m
+        OnChangeBand(0);
         break;
-    case Qt::Key_1:
-        OnChangeBand(1);// 80m
+    case Qt::Key_1:// Change to band 80m
+        OnChangeBand(1);
         break;
-    case Qt::Key_2:
-        OnChangeBand(2);// 60m
+    case Qt::Key_2:// Change to band 60m
+        OnChangeBand(2);
         break;
-    case Qt::Key_3:
-        OnChangeBand(3);// 40m
+    case Qt::Key_3:// Change to band 40m
+        OnChangeBand(3);
         break;
-    case Qt::Key_4:
+    case Qt::Key_4:// Change to band 30m
         OnChangeBand(4);// 30m
         break;
-    case Qt::Key_5:
-        OnChangeBand(5);// 20m
+    case Qt::Key_5:// Change to band 20m
+        OnChangeBand(5);
         break;
-    case Qt::Key_6:
-        OnChangeBand(6);// 17m
+    case Qt::Key_6:// Change to band 17m
+        OnChangeBand(6);
         break;
-    case Qt::Key_7:
-        OnChangeBand(7);// 15m
+    case Qt::Key_7:// Change to band 15m
+        OnChangeBand(7);
         break;
-    case Qt::Key_8:
-        OnChangeBand(8);// 12m
+    case Qt::Key_8:// Change to band 12m
+        OnChangeBand(8);
         break;
-    case Qt::Key_9:
-        OnChangeBand(9);// 10m
+    case Qt::Key_9:// Change to band 10m
+        OnChangeBand(9);
         break;
-    case Qt::Key_Asterisk:
-        OnChangeBand(10);// 6m
+    case Qt::Key_Asterisk:// Change to band 6m
+        OnChangeBand(10);
         break;
-    case Qt::Key_Q:
-        OnChangeMode(6);//AM
+    case Qt::Key_Q:// Change to mode AM
+        OnChangeMode(6);
         break;
-    case Qt::Key_W:
-        OnChangeMode(10);//SAM
+    case Qt::Key_W:// Change to mode SAM
+        OnChangeMode(10);
         break;
-    case Qt::Key_E:
-        OnChangeMode(2);//DSB
+    case Qt::Key_E:// Change to mode DSB
+        OnChangeMode(2);
         break;
-    case Qt::Key_R:
-        OnChangeMode(0);//LSB
+    case Qt::Key_R:// Change to mode LSB
+        OnChangeMode(0);
         break;
-    case Qt::Key_T:
-        OnChangeMode(1);//USB
+    case Qt::Key_T:// Change to mode USB
+        OnChangeMode(1);
         break;
-    case Qt::Key_Y:
-        OnChangeMode(3);//CWL
+    case Qt::Key_Y:// Change to mode CWL
+        OnChangeMode(3);
         break;
-    case Qt::Key_U:
-        OnChangeMode(4);//CWU
+    case Qt::Key_U:// Change to mode CWU
+        OnChangeMode(4);
         break;
-    case Qt::Key_I:
-        OnChangeMode(5);//NFM
+    case Qt::Key_I:// Change to mode NFM
+        OnChangeMode(5);
         break;
-    case Qt::Key_O:
-        OnChangeMode(8);//SPEC
+    case Qt::Key_O:// Change to mode SPEC
+        OnChangeMode(8);
         break;
-    case Qt::Key_P:
-        OnChangeMode(9);//DIGL
+    case Qt::Key_P:// Change to mode DIGL
+        OnChangeMode(9);
         break;
-    case Qt::Key_BracketLeft:
-        OnChangeMode(7);//DIGU
+    case Qt::Key_BracketLeft:// Change to mode DIGU
+        OnChangeMode(7);
         break;
-    case Qt::Key_BracketRight:
-        OnChangeMode(11);//DRM
+    case Qt::Key_BracketRight:// Change to mode DRM
+        OnChangeMode(11);
         break;
     case Qt::Key_A://volume up
     {
@@ -8279,24 +8279,24 @@ void ExpertSDR_vA2_1::keyReleaseEvent(QKeyEvent *event)
         ChangeValcoder(Tmp);
     }
         break;
-    case Qt::Key_PageUp://Change up filter freq with 10Hz
+    case Qt::Key_PageUp://Change up filter freq with step
     {
-
+        int Index =  pMenuStep->actions().indexOf(pAgStep->checkedAction());
         int Tmp = pGraph->pGl->GetFilter();
         if(++Tmp > pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0)
             Tmp = -pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0;
         qDebug()<<"+Tmp = "<<Tmp;
-        pGraph->pGl->SetFilter(Tmp+9);
+        pGraph->pGl->SetFilter(Tmp+StepDDSHz[Index]-1);
     }
         break;
-    case Qt::Key_PageDown://Change down filter freq with 10Hz
+    case Qt::Key_PageDown://Change down filter freq with step
     {
-
+        int Index =  pMenuStep->actions().indexOf(pAgStep->checkedAction());
         int Tmp = pGraph->pGl->GetFilter();
         if(--Tmp < -pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0)
             Tmp = pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0;
              qDebug()<<"-Tmp = "<<Tmp;
-        pGraph->pGl->SetFilter(Tmp-9);
+        pGraph->pGl->SetFilter(Tmp-StepDDSHz[Index]+1);
     }
         break;
     default:
