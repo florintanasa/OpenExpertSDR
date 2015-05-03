@@ -122,6 +122,7 @@ private:
     void showEvent(QShowEvent *event);
     void timerEvent(QTimerEvent *);
     void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 
     int MainStep();
     int MainMod();

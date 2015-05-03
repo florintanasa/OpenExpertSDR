@@ -8012,9 +8012,7 @@ void ExpertSDR_vA2_1::changedVfoBDown()
 void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
-    case Qt::Key_N:
-        OnPanChangeNb();
-        break;
+
     case Qt::Key_0:
         OnChangeBand(0);// 160m
         break;
@@ -8088,7 +8086,7 @@ void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
     {
         int Vol = ui->slVol->value();
         if (Vol<=100)
-        Vol++;
+            Vol++;
         else
             Vol=100;
         ui->slVol->setValue(Vol);
@@ -8098,7 +8096,7 @@ void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
     {
         int Vol = ui->slVol->value();
         if (Vol>0)
-        Vol--;
+            Vol--;
         else
             Vol=0;
         ui->slVol->setValue(Vol);
@@ -8118,7 +8116,6 @@ void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
     {
         int Agc = ui->slAgc->value();
         if (Agc>-20)
-
             Agc--;
         else
             Agc = -20;
@@ -8165,9 +8162,145 @@ void ExpertSDR_vA2_1::keyPressEvent(QKeyEvent *event)
         ui->slMic->setValue(Mic);
     }
         break;
+    case Qt::Key_L://Sql up
+    {
+        int Sql = ui->slSql->value();
+        if (Sql<=0)
+            Sql++;
+        else
+            Sql = 0;
+        ui->slSql->setValue(Sql);
+    }
+        break;
+    case Qt::Key_Semicolon://Sql down
+    {
+        int Sql = ui->slSql->value();
+        if (Sql>-160)
+            Sql--;
+        else
+            Sql = -160;
+        ui->slSql->setValue(Sql);
+    }
+        break;
+    case Qt::Key_Apostrophe://Sql On/Off
+        OnPanChangeSqlState();
+        break;
+    case Qt::Key_Z://BIN On/Off
+        OnPanChangeBin();
+        break;
+    case Qt::Key_X://NR On/Off
+        OnPanChangeNr();
+        break;
+    case Qt::Key_C://NB On/Off
+        OnPanChangeNb();
+        break;
+    case Qt::Key_V://NB2 On/Off
+        OnPanChangeNb2();
+        break;
+    case Qt::Key_B://ANF On/Off
+        OnPanChangeAnf();
+        break;
     default:
+        qDebug()<<"I press "<<event->text();
         break;
     }
 
 }
 
+
+//key assign for panel or shortcut with keyboard
+void ExpertSDR_vA2_1::keyReleaseEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+
+    case Qt::Key_N://Band up
+    {
+        int Tmp = pBandBut->checkedId();
+        if(--Tmp < 0)
+            Tmp = 13;
+        OnChangeBand(Tmp);
+    }
+        break;
+    case Qt::Key_M://Band down
+    {
+        int Tmp = pBandBut->checkedId();
+        if(++Tmp > 13)
+            Tmp = 0;
+        OnChangeBand(Tmp);
+    }
+        break;
+    case Qt::Key_Comma://Mode left
+    {
+        int Tmp = pModeBut->checkedId();
+        qDebug()<<"Mode before"<<Tmp;
+        if(--Tmp < 0)
+            Tmp = 11;
+        OnChangeMode(Tmp);
+
+    }
+        break;
+    case Qt::Key_Period://Mode right
+    {
+        int Tmp = pModeBut->checkedId();
+        if(++Tmp > 11)
+            Tmp = 0;
+        OnChangeMode(Tmp);
+    }
+        break;
+    case Qt::Key_Up://Step freq up
+    {
+        int Index =  pMenuStep->actions().indexOf(pAgStep->checkedAction());
+        if(++Index > 18)
+            Index = 0;
+        OnStepChanged(Index);
+    }
+        break;
+    case Qt::Key_Down://Step freq down
+    {
+        int Index =  pMenuStep->actions().indexOf(pAgStep->checkedAction());
+        if(--Index < 0)
+            Index = 18;
+        OnStepChanged(Index);
+    }
+        break;
+    case Qt::Key_Right://Change freq up with step
+    {
+        int Tmp = 0;
+        if(++Tmp > 1)
+            Tmp = 1;
+        ChangeValcoder(Tmp);
+    }
+        break;
+    case Qt::Key_Left://Change freq down with step
+    {
+        int Tmp = 0;
+        if(--Tmp < -1)
+            Tmp = -1;
+        ChangeValcoder(Tmp);
+    }
+        break;
+    case Qt::Key_PageUp://Change up filter freq with 10Hz
+    {
+
+        int Tmp = pGraph->pGl->GetFilter();
+        if(++Tmp > pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0)
+            Tmp = -pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0;
+        qDebug()<<"+Tmp = "<<Tmp;
+        pGraph->pGl->SetFilter(Tmp+9);
+    }
+        break;
+    case Qt::Key_PageDown://Change down filter freq with 10Hz
+    {
+
+        int Tmp = pGraph->pGl->GetFilter();
+        if(--Tmp < -pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0)
+            Tmp = pOpt->ui.cbPaSampleRate->currentText().toInt()/2.0;
+             qDebug()<<"-Tmp = "<<Tmp;
+        pGraph->pGl->SetFilter(Tmp-9);
+    }
+        break;
+    default:
+        qDebug()<<"I release "<<event->text();
+        break;
+    }
+}
