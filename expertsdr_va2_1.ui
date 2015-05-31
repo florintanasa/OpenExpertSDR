@@ -2816,7 +2816,7 @@ color: #FFFFFF;
           </font>
          </property>
          <property name="toolTip">
-          <string>Noise Redaction</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RX2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton { /* all types of tool button */ 
@@ -3284,7 +3284,7 @@ background-color: #000000;
           </font>
          </property>
          <property name="toolTip">
-          <string>Noise Redaction</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RX1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton { /* all types of tool button */ 
