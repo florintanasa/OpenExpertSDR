@@ -1148,7 +1148,8 @@ ExpertSDR_vA2_1::ExpertSDR_vA2_1(QWidget *parent) :
      MicGainScale = qPow(10.0, pOpt->ui.sbMicInGain->value()/20.0);
      pGraph->pGl->GetBandFilter(RxFilterBandLow, RxFilterBandHigh);
      pGraph->pGl->SetVisibleInfo(ui->cbPanInfo->isChecked());
-     MicScale = DbToValMic(ui->slMic->value());
+     MicScale = ((double)ui->slMic->value())/((double)ui->slMic->maximum());
+     qDebug() << __FUNCTION__ << ":" << __LINE__ << " MicScale=" << MicScale << " MicGainScale=" << MicGainScale;
 
      OnOptChangeNrVals(0);
      OnOptChangeAgcVals(0);
@@ -3180,8 +3181,8 @@ void ExpertSDR_vA2_1::readSettings()
             tmpIValue = 0;
         }
         pOpt->ui.sbPaLattency->setValue(tmpIValue);
-        tmpIValue = settings.value("Audio_MicInGain", 10).toInt();
-        if(tmpIValue < 0 || tmpIValue > 100)
+        tmpIValue = settings.value("Audio_MicInGain", 0).toInt();
+        if(tmpIValue < pOpt->ui.sbMicInGain->minimum() || tmpIValue > pOpt->ui.sbMicInGain->maximum())
         {
             qWarning() << "ExpertSDR: readSettings(): Audio_MicInGain = " << tmpIValue;
             tmpIValue = 0;
@@ -4885,7 +4886,7 @@ void ExpertSDR_vA2_1::OnMox(bool Tx)
         pGraph->pGl->GetBandFilter(RxFilterBandLow, RxFilterBandHigh);
         pGraph->pGl->SetBandFilter(band.x(), band.y());
         SetTxFilter();
-        tmpMicScale = DbToValMic(ui->slMic->value());
+        tmpMicScale = DbToValMic(ui->slMic->value()/ui->slMic->maximum());
         OnMic(ui->slMic->value());
 #ifdef Q_OS_WIN
         pPanel->onMox(Tx);
@@ -5076,7 +5077,8 @@ void ExpertSDR_vA2_1::OnDrive(int Val)
 void ExpertSDR_vA2_1::OnMic(int Val)
 {
     ui->slMic->setValue(Val);
-    MicScale = DbToValMic(Val);
+    MicScale = ((double)Val)/((double)ui->slMic->maximum());
+    qDebug() << __FUNCTION__ << ":" << __LINE__ << " MicScale=" << MicScale << " MicGainScale=" << MicGainScale;
     tmpMicScale = MicScale;
 }
 
@@ -7175,10 +7177,10 @@ void ExpertSDR_vA2_1::OnPanMicGain(int Val)
 {
     int Vol = ui->slMic->value();
     Vol += Val;
-    if(Vol > 70)
-        Vol = 70;
-    if(Vol < 0)
-        Vol = 0;
+    if(Vol > ui->slMic->maximum())
+        Vol = ui->slMic->maximum();
+    if(Vol < ui->slMic->minimum())
+        Vol = ui->slMic->minimum();
     OnMic(Vol);
 }
 

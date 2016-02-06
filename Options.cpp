@@ -252,8 +252,8 @@ void Options::SetupPluginList()
 	for(uint i = 0; i < plug_dir.count(); i++)
 	{
 		QString libpath = plugin_dir + "/" + plug_dir[i];
-		QString InfoStr = "";
-//		QString InfoStr = plug_dir[i];
+        //QString InfoStr = "";
+        QString InfoStr = plug_dir[i];
 
 		if(pluginCtrl::getInfo(libpath, InfoStr))
 			ui.cbSdrType->addItem(InfoStr, libpath);

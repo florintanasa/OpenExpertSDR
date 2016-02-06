@@ -4683,12 +4683,12 @@ void Panarama::writeSettings(QSettings *pSettings)
 {
 	qDebug() << "Panarama: writeSettings()";
 	pSettings->beginGroup("PanSettings");
-		pSettings->setValue("TxBandOffset", DbmTxState.offset);
-		pSettings->setValue("TxBandScale" , DbmTxState.scale );
+        pSettings->setValue("TxBandOffset", ((double)DbmTxState.offset));
+        pSettings->setValue("TxBandScale" , ((double)DbmTxState.scale) );
 		for(int i = 0; i < NUM_BANDS+1; i++)
 		{
-			pSettings->setValue("RxBandOffset" + QString::number(i), DbmRxState[i].offset);
-			pSettings->setValue("RxBandScale"  + QString::number(i), DbmRxState[i].scale );
+            pSettings->setValue("RxBandOffset" + QString::number(i), ((double)DbmRxState[i].offset));
+            pSettings->setValue("RxBandScale"  + QString::number(i), ((double)DbmRxState[i].scale) );
 		}
 		pSettings->setValue("posRule", sPosRule);
 	pSettings->endGroup();
