@@ -72,7 +72,8 @@ class SdrPlugin : public QWidget
 		SDR_DEVICE GetSdrType();
 
 		void SetPreamp(int Preamp);
-		void SetExtCtrl(DWORD ExtData);
+        void SetWpm(int Wpm);
+        void SetExtCtrl(DWORD ExtData);
 		void SetDdsFreq(float Freq);
 		float GetDdsFreq();
 		void SetTrxMode(bool Mode);

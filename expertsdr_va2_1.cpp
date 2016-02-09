@@ -1626,6 +1626,8 @@ void ExpertSDR_vA2_1::onPaVacDriverChanged(int Index)
 void ExpertSDR_vA2_1::onCwSpeed(int speed)
 {
     pCwMacro->pCwCore->setSpeed(speed);
+    //try to set it in the extio plugin as well
+    pSdrCtrl->SetWpm(speed);
 }
 
 void ExpertSDR_vA2_1::adcMeters(int Ufwd, int Uref)

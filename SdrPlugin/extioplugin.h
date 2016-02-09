@@ -37,6 +37,7 @@ typedef int (*ExtIOext_SetModeRxTx)(int);
 typedef int (*ExtIOext_ActivateTx)(int, int);
 typedef void (*ExtIOext_VersionInfo)(const char*, int, int);
 typedef void (*ExtIOext_SetPreamp)(int db);
+typedef void (*ExtIOext_SetWpm)(int wpm);
 
 //GetStatus GetHWSR, HideGUI, RawDataReady, GetFilters are not implemented
 #  elif defined WIN32
@@ -96,6 +97,7 @@ typedef struct
     ExtIOext_ActivateTx ActivateTx;
     ExtIOext_VersionInfo VersionInfo;
     ExtIOext_SetPreamp SetPreamp;
+    ExtIOext_SetWpm SetWpm;
 } ExtIORouts;
 
 enum ExtIOCallbackStatus {
@@ -120,6 +122,13 @@ enum ExtIOCallbackStatus {
     //   exciter/transmitter must wait until SetModeRxTx() is called!
     , ecsRXRequest          = 121   // DLL wants to leave TX mode / User released PTT
     //   exciter/transmitter must wait until SetModeRxTx() is called!
+
+    //Genesis SDR Extensions
+    , ecsDotOnRequest       = 520   // DLL requests Dot start mode / User pressed Dot Paddle or Straight key
+    , ecsDotOffRequest      = 521   // DLL wants to leave Dot start mode / User released Dot Paddle or Straight key
+    , ecsDashOnRequest      = 522   // DLL requests Dash start mode / User pressed Dash Paddle or Straight key
+    , ecsDashOffRequest     = 523   // DLL wants to leave Dash start mode / User released Dash Paddle or Straight key
+
 };
 
 typedef enum
@@ -153,6 +162,7 @@ protected:
     void SetModeRxTx(HwModeRxTx mode);
 
     void SetPreamp(int db);
+    void SetWpm(int wpm);
 
     bool IsExtIOMode();
     bool IsExtIOOpen();
@@ -194,6 +204,8 @@ signals:
     void Start(bool state);
     void TuneChanged(long freq);
     void Ptt(bool);
+    void Dot(bool);
+    void Dash(bool);
 
 public slots:
     void OnModeChanged(int mode);

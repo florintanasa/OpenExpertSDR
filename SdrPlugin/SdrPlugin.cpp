@@ -132,6 +132,13 @@ void SdrPlugin::SetPreamp(int Preamp)
         pSDRhw->setPreamp(Preamp);
 }
 
+void SdrPlugin::SetWpm(int Wpm)
+{
+    qDebug() << __FUNCTION__ << ":" << __LINE__ << " Wpm:" << Wpm;
+    if(pSDRhw)
+        pSDRhw->setWpm(Wpm);
+}
+
 void SdrPlugin::SetExtCtrl(DWORD ExtData)
 {
     if(pSDRhw)

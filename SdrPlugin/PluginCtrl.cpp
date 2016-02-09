@@ -42,6 +42,8 @@ pluginCtrl::pluginCtrl(QString libpath)
         if(ExtIOPlugin::IsExtIO(pPlugLib))
         {
             connect(this, SIGNAL(Ptt(bool)), this, SIGNAL(PttChanged(bool)));
+            connect(this, SIGNAL(Dot(bool)), this, SIGNAL(DotChanged(bool)));
+            connect(this, SIGNAL(Dash(bool)), this, SIGNAL(DashChanged(bool)));
             ExtIOPluginInit(pPlugLib);
         }
         else
@@ -67,6 +69,7 @@ pluginCtrl::pluginCtrl(QString libpath)
         routs.close = (PluginFunc_close)pPlugLib->resolve("close");
         routs.isOpen = (PluginFunc_isOpen)pPlugLib->resolve("isOpen");
         routs.setPreamp = (PluginFunc_setPreamp)pPlugLib->resolve("setPreamp");
+        routs.setWpm = (PluginFunc_setWpm)pPlugLib->resolve("setWpm");
         routs.setExtCtrl = (PluginFunc_setExtCtrl)pPlugLib->resolve("setExtCtrl");
         routs.setDdsFreq = (PluginFunc_setDdsFreq)pPlugLib->resolve("setDdsFreq");
         routs.setTrxMode = (PluginFunc_setTrxMode)pPlugLib->resolve("setTrxMode");
@@ -146,6 +149,15 @@ void pluginCtrl::setPreamp(int Preamp)
     else
         if(routs.setPreamp && pluginLoaded)
             routs.setPreamp(Preamp);
+}
+
+void pluginCtrl::setWpm(int Wpm)
+{
+    if(IsExtIOMode())
+        SetWpm(Wpm);
+    else
+        if(routs.setWpm && pluginLoaded)
+            routs.setWpm(Wpm);
 }
 
 void pluginCtrl::setExtCtrl(DWORD ExtData)

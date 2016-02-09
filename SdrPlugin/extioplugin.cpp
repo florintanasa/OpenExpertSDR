@@ -42,6 +42,7 @@ void ExtIOPlugin::ExtIOPluginInit(QLibrary *plugin)
     routs.ActivateTx = (ExtIOext_ActivateTx)plugin->resolve("ActivateTx");
     routs.VersionInfo = (ExtIOext_VersionInfo)plugin->resolve("VersionInfo");
     routs.SetPreamp = (ExtIOext_SetPreamp)plugin->resolve("SetPreamp");
+    routs.SetWpm = (ExtIOext_SetWpm)plugin->resolve("SetWpm");
     #  if defined (__GNUC__) && defined(__unix__)
     typedef void (*ExtIOext_VersionInfo)(char *name, int ver_major, int ver_minor);
     #  elif defined WIN32
@@ -306,11 +307,20 @@ void ExtIOPlugin::version_info(const char *name, int ver_major, int ver_minor)
     if(routs.VersionInfo)
         routs.VersionInfo(name, ver_major, ver_minor);
 }
+
 void ExtIOPlugin::SetPreamp(int db)
 {
     if(routs.SetPreamp)
     {
         routs.SetPreamp(db);
+    }
+}
+
+void ExtIOPlugin::SetWpm(int wpm)
+{
+    if(routs.SetWpm)
+    {
+        routs.SetWpm(wpm);
     }
 }
 
@@ -415,6 +425,22 @@ void ExtIOPlugin::OnExtIOCallback(int status)
 
     case ecsTXRequest:
         emit Ptt(true);
+        break;
+
+    case ecsDotOnRequest:
+        emit Dot(true);
+        break;
+
+    case ecsDotOffRequest:
+        emit Dot(false);
+        break;
+
+    case ecsDashOnRequest:
+        emit Dash(true);
+        break;
+
+    case ecsDashOffRequest:
+        emit Dash(false);
         break;
 
     default:
