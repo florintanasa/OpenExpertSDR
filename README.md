@@ -29,10 +29,12 @@ make
 for libDttSP.so use this link https://github.com/wd8rde/libDttSP
 
 For who have SDR from Genesis G59 or G11 https://github.com/wd8rde/libExtio_genesis, then in OpenExpertSDR/build directory:
-   cd OpenExpertSDR/build
-   mkdir device
-   cd device
-   ln -s /usr/local/lib/libextio_genesis.so libextio_genesis.so
+```
+cd OpenExpertSDR/build
+mkdir device
+cd device
+ln -s /usr/local/lib/libextio_genesis.so libextio_genesis.so
+```
 
 I added posibility to load at list virtual serial port at qextserial tnt* to be used with CAT
 
