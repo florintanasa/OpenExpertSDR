@@ -6,27 +6,21 @@ To compile use:
 
  QtCreator with qt5 or qt4 and for windows use mingw from http://www.mingw.org/ not from qt.
 
-or from console after clone
+Or from console after clone
 
+```
 cd OpenExpertSDR
-
 qmake *.pro
-
 make
-
-or use cmake only for qt5
-
+# or use cmake only for qt5
 cd OpenExpertSDR
-
 mkdir build
-
 cd build
-
 cmake ..
-
 make
+```
 
-for libDttSP.so use this link https://github.com/wd8rde/libDttSP
+For libDttSP.so use this link https://github.com/wd8rde/libDttSP
 
 For who have SDR from Genesis G59 or G11 https://github.com/wd8rde/libExtio_genesis, then in OpenExpertSDR/build directory:
 ```
