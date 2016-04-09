@@ -85,7 +85,7 @@ void fileList::readSettings(QSettings *pSet)
     QFileInfo info;
 
     pSet->beginGroup("IqWavList");
-        lastPath = pSet->value("LastIqFilePath", QDir::homePath()).toString(); // место открытия файлов
+        lastPath = pSet->value("LastIqFilePath", QDir::homePath()).toString();
         files = pSet->value("IqFiles", 0).toStringList();
     pSet->endGroup();
 
