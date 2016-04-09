@@ -577,20 +577,10 @@ void WavWriter::close()
 
 	stopDt = QDateTime::currentDateTime();
 	int tmpSize = pDevice->pos();
-	QString str;
-    str = "RIFF";
-    //qMemCopy(wavHeader.riff, str.toAscii().data(), 4);
-    //std::memset(wavHeader.riff, str.toLatin1().data(), 4);
-    std::memset(wavHeader.riff, str.toLatin1().toInt(), 4);
+    std::memcpy(wavHeader.riff, "RIFF", 4);
     wavHeader.chunkSize = 8;
-	str = "WAVE";
-    //qMemCopy(wavHeader.wave, str.toAscii().data(), 4);
-    //std::memset(wavHeader.wave, str.toLatin1().data(), 4);
-    std::memset(wavHeader.wave, str.toLatin1().toInt(), 4);
-    str = "fmt ";
-    //qMemCopy(wavHeader.fmt, str.toAscii().data(), 4);
-    //std::memset(wavHeader.fmt, str.toLatin1().data(), 4);
-    std::memset(wavHeader.fmt, str.toLatin1().toInt(), 4);
+    std::memcpy(wavHeader.wave, "WAVE", 4);
+    std::memcpy(wavHeader.fmt, "fmt ", 4);
     wavHeader.subchunk1Size = 16;
 	wavHeader.audioFormat = 1;
 	wavHeader.channels = 2;
@@ -598,10 +588,7 @@ void WavWriter::close()
 	wavHeader.bitsPerSample = 24;
 	wavHeader.bytesPerSec = sampleRate*wavHeader.channels*wavHeader.bitsPerSample/8;
 	wavHeader.blockAlign = 6;
-	str = "auxi";
-    //qMemCopy(wavHeader.subchunk2ID, str.toAscii().data(), 4);
-    //std::memset(wavHeader.subchunk2ID, str.toLatin1().data(), 4);
-    std::memset(wavHeader.subchunk2ID, str.toLatin1().toInt(), 4);
+    std::memcpy(wavHeader.subchunk2ID, "auxi", 4);
     wavHeader.subchunk2Size = sizeof(winradInfo);
 	pDevice->seek(0);
 	pDevice->write(reinterpret_cast<char *>(&wavHeader), sizeof(wavHeader));
@@ -631,10 +618,7 @@ void WavWriter::close()
 	sysTime.wMilliseconds = time.msec();
 	winradInfo.StopTime = sysTime;
 	pDevice->write(reinterpret_cast<char *>(&winradInfo), sizeof(winradInfo));
-	str = "data";
-    //qMemCopy(wavHeader.subchunk2ID, str.toAscii().data(), 4);
-    //std::memset(wavHeader.subchunk2ID, str.toLatin1().data(), 4);
-    std::memset(wavHeader.subchunk2ID, str.toLatin1().toInt(), 4);
+    std::memcpy(wavHeader.subchunk2ID, "data", 4);
     wavHeader.subchunk2Size = tmpSize;
 	pDevice->write(reinterpret_cast<char *>(&wavHeader.subchunk2ID), 8);
 	pDevice->close();

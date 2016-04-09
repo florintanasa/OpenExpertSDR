@@ -101,22 +101,22 @@ bool VoiceRecorder::onRec(bool state)
 	if(!state)
 	{
 		unsigned long file_sz = waveFile.size();
-		QString str;
-		str = "RIFF";
-        str = "WAVE";
-        str = "fmt ";
-        str = "data";
+//		QString str;
+//		str = "RIFF";
+//        str = "WAVE";
+//        str = "fmt ";
+//        str = "data";
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-        std::memcpy(wavHeader.riff, str.toLatin1().data(), 4);
-        std::memcpy(wavHeader.wave, str.toLatin1().data(), 4);
-        std::memcpy(wavHeader.fmt, str.toLatin1().data(), 4);
-        std::memcpy(wavHeader.subchunk2ID, str.toLatin1().data(), 4);
+        std::memcpy(wavHeader.riff, "RIFF", 4);
+        std::memcpy(wavHeader.wave, "WAVE", 4);
+        std::memcpy(wavHeader.fmt, "fmt ", 4);
+        std::memcpy(wavHeader.subchunk2ID, "data", 4);
 #else
-        qMemCopy(wavHeader.riff, str.toAscii().data(), 4);
-        qMemCopy(wavHeader.wave, str.toAscii().data(), 4);
-        qMemCopy(wavHeader.fmt, str.toAscii().data(), 4);
-        qMemCopy(wavHeader.subchunk2ID, str.toAscii().data(), 4);
+        qMemCopy(wavHeader.riff, "RIFF", 4);
+        qMemCopy(wavHeader.wave, "WAVE", 4);
+        qMemCopy(wavHeader.fmt, "fmt ", 4);
+        qMemCopy(wavHeader.subchunk2ID, "data", 4);
 #endif
 
         wavHeader.chunkSize = file_sz - 8;
