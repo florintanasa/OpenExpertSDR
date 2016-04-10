@@ -110,8 +110,12 @@ void CatManager::Open(bool status)
     		pCom->open(QIODevice::ReadWrite);
     	}
     	else
-    	{
-    		pCom->setPortName("\\\\.\\" + pOpt->ui.cbCatPortName->currentText());
+        {
+#ifdef Q_OS_LINUX
+            pCom->setPortName("/dev/" + pOpt->ui.cbCatPortName->currentText());
+#else
+            pCom->setPortName("\\\\.\\" + pOpt->ui.cbCatPortName->currentText());
+#endif /*Q_OS_LINUX*/
     		pCom->open(QIODevice::ReadWrite);
     	}
 
