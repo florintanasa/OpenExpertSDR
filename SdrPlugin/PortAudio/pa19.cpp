@@ -148,7 +148,7 @@ void pa19::setParam(PLUGIN_OPTIONS *Param)
     {
         int DeviceIndex = Pa_HostApiDeviceIndexToDeviceIndex(DrvIndex, i);
         const PaDeviceInfo *pDevInfo = Pa_GetDeviceInfo(DeviceIndex);
-        if(pDevInfo->maxInputChannels > 0)
+        if(pDevInfo->maxInputChannels > 0 || pDevInfo->maxOutputChannels > 0)
         {
             if(!set_in && pDevInfo->name == Param->cbPaInItem)
             {
