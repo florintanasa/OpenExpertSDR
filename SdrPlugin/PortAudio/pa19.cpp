@@ -165,14 +165,16 @@ void pa19::setParam(PLUGIN_OPTIONS *Param)
     }
 
 //    outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, Param->cbPaOutIndex + outOffsetIndex);
-    outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, outOffsetIndex);
-	outParam.channelCount = (Param->cbPaChannelsIndex + 1)*2;
+//    outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, outOffsetIndex);
+    outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(DrvIndex, outOffsetIndex);
+    outParam.channelCount = (Param->cbPaChannelsIndex + 1)*2;
 	outParam.sampleFormat = paFloat32 | paNonInterleaved;
 	outParam.suggestedLatency = Param->sbPaLattency/1000.0;
 	outParam.hostApiSpecificStreamInfo = 0;
 
 //    inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, Param->cbPaInIndex + inOffsetIndex);
-    inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, inOffsetIndex);
+//    inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, inOffsetIndex);
+    inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(DrvIndex, inOffsetIndex);
 	inParam.channelCount = (Param->cbPaChannelsIndex + 1)*2;
 	inParam.sampleFormat = paFloat32 | paNonInterleaved;
 	inParam.suggestedLatency = Param->sbPaLattency/1000.0;
