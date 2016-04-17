@@ -178,8 +178,11 @@ int SdrPlugin::Start()
         return -1;
 
 	OptPlug.cbPaDriverIndex = pUi->cbPaDriver->currentIndex();
+    OptPlug.cbPaDriverItem = pUi->cbPaDriver->currentText();
 	OptPlug.cbPaOutIndex = pUi->cbPaOut->currentIndex();
+    OptPlug.cbPaOutItem = pUi->cbPaOut->currentText();
 	OptPlug.cbPaInIndex = pUi->cbPaIn->currentIndex();
+    OptPlug.cbPaInItem = pUi->cbPaIn->currentText();
 	OptPlug.cbPaChannelsIndex = pUi->cbPaChannels->currentIndex();
 	OptPlug.cbPaSampleRate = pUi->cbPaSampleRate->currentText().toInt();
 	OptPlug.cbPaBufferSizeIndex = pUi->cbPaBufferSize->currentIndex();

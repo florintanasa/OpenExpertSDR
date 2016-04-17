@@ -128,13 +128,51 @@ bool pa19::isStart()
 }
 void pa19::setParam(PLUGIN_OPTIONS *Param)
 {
-	outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, Param->cbPaOutIndex + outOffsetIndex);
+    bool set_in = false;
+    bool set_out = false;
+    bool set_drv = false;
+
+    for(int j = 0; j < Pa_GetHostApiCount(); j++)
+    {
+        const PaHostApiInfo *pInfo = Pa_GetHostApiInfo(j);
+        if(!set_drv && pInfo->name == Param->cbPaDriverItem)
+        {
+            set_drv = true;
+            DrvIndex = j;
+        }
+    }
+
+    const PaHostApiInfo *pInfo = Pa_GetHostApiInfo(DrvIndex);
+
+    for(int i = 0; i < pInfo->deviceCount; i++)
+    {
+        int DeviceIndex = Pa_HostApiDeviceIndexToDeviceIndex(DrvIndex, i);
+        const PaDeviceInfo *pDevInfo = Pa_GetDeviceInfo(DeviceIndex);
+        if(pDevInfo->maxInputChannels > 0)
+        {
+            if(!set_in && pDevInfo->name == Param->cbPaInItem)
+            {
+                set_in = true;
+                inOffsetIndex = i;
+            }
+
+            if(!set_out && pDevInfo->name == Param->cbPaOutItem)
+            {
+                set_out = true;
+                outOffsetIndex = i;
+            }
+        }
+    }
+
+//    outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, Param->cbPaOutIndex + outOffsetIndex);
+    outParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, outOffsetIndex);
 	outParam.channelCount = (Param->cbPaChannelsIndex + 1)*2;
 	outParam.sampleFormat = paFloat32 | paNonInterleaved;
 	outParam.suggestedLatency = Param->sbPaLattency/1000.0;
 	outParam.hostApiSpecificStreamInfo = 0;
 
-	inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, Param->cbPaInIndex + inOffsetIndex);
+//    inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, Param->cbPaInIndex + inOffsetIndex);
+    inParam.device = Pa_HostApiDeviceIndexToDeviceIndex(Param->cbPaDriverIndex, inOffsetIndex);
 	inParam.channelCount = (Param->cbPaChannelsIndex + 1)*2;
 	inParam.sampleFormat = paFloat32 | paNonInterleaved;
 	inParam.suggestedLatency = Param->sbPaLattency/1000.0;
@@ -173,7 +211,7 @@ QStringList pa19::outDevName(int Host)
 		if(pDevInfo->maxOutputChannels > 0)
 		{
 			lst << QString::fromLocal8Bit(pDevInfo->name);
-			if(!set)
+            if(!set)
 			{
 				set = true;
                 outOffsetIndex = i;
@@ -197,12 +235,12 @@ QStringList pa19::inDevName(int Host)
 		const PaDeviceInfo *pDevInfo = Pa_GetDeviceInfo(DeviceIndex);
 		if(pDevInfo->maxInputChannels > 0)
 		{
-			if(!set)
+            lst << QString::fromLocal8Bit(pDevInfo->name);
+            if(!set)
 			{
 				set = true;
-				inOffsetIndex = i;
-			}
-			lst << QString::fromLocal8Bit(pDevInfo->name);
+                inOffsetIndex = i;
+            }
 		}
     }
 	return lst;

@@ -63,7 +63,7 @@ class pa19
 
 	private:
 		bool IsOpened, isStarted;
-		int outOffsetIndex, inOffsetIndex;
+        int outOffsetIndex, inOffsetIndex, DrvIndex;
 		double sampleRate;
 		int bufferSize;
 		PaStreamParameters inParam, outParam;

@@ -242,6 +242,9 @@ typedef struct PLUG_OPT
 	int cbPaDriverIndex;
 	int cbPaInIndex;
 	int cbPaOutIndex;
+    QString cbPaOutItem;
+    QString cbPaInItem;
+    QString cbPaDriverItem;
 	int cbPaChannelsIndex;
 	int cbPaSampleRate;
 	int cbPaBufferSizeIndex;
