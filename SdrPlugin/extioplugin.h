@@ -66,6 +66,7 @@ typedef __stdcall int (*ExtIOext_SetModeRxTx)(int);
 typedef __stdcall int (*ExtIOext_ActivateTx)(int, int);
 typedef __stdcall void (*ExtIOext_VersionInfo)(const char*, int, int);
 typedef __stdcall void (*ExtIOext_SetPreamp)(int db);
+typedef __stdcall void (*ExtIOext_SetWpm)(int wpm);
 //GetStatus GetHWSR, HideGUI, RawDataReady, GetFilters are not implemented
 #  endif
 
