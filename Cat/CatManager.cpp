@@ -438,7 +438,7 @@ void CatManager::PerformCmd(QString str)
 
 		tmpStep = StepToCat[pSdr->MainStep()];
 
-		tmpstr1 = "IF" + tmpFreq + tmpStep + "000000" + "0" + "0" + "0" + "00";
+		tmpstr1 = "IF" + tmpFreq + tmpStep + "000000" + "0" + "0" + "0" + "00" + "00";
 
         tmpstr2.setNum((int)(pSdr->ui->pbMox->isChecked()));
 
