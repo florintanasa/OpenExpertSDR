@@ -116,16 +116,37 @@ Options::Options(QWidget *parent) : QWidget(parent)
 	connect(ui.LwOptions, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(ChangePage(QListWidgetItem*, QListWidgetItem*)));
 	connect(ui.pbOK, SIGNAL(clicked()), this, SLOT(OnOK()));
 	connect(ui.pbCancel, SIGNAL(clicked()), this, SLOT(OnCancel()));
-	connect(ui.slTxImRejMag, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChange(int)));
-	connect(ui.slTxImRejPhase, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChange(int)));
-	connect(ui.slTxImRejMagCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeCw(int)));
-	connect(ui.sbTxImRejMagCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeCw(int)));
-	connect(ui.slTxImRejPhaseCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeCw(int)));
-	connect(ui.sbTxImRejPhaseCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeCw(int)));
-	connect(ui.slTxImRejMagAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeAmFm(int)));
-	connect(ui.sbTxImRejMagAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeAmFm(int)));
-	connect(ui.slTxImRejPhaseAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeAmFm(int)));
-	connect(ui.sbTxImRejPhaseAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeAmFm(int)));
+
+    connect(ui.slTxImRejMag, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChange(int)));
+    connect(ui.sbTxImRejMag, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChange(int)));
+    connect(ui.sbTxImRejMag, SIGNAL(valueChanged(int)),ui.slTxImRejMag, SLOT(setValue(int)));
+    connect(ui.slTxImRejMag, SIGNAL(valueChanged(int)),ui.sbTxImRejMag, SLOT(setValue(int)));
+
+    connect(ui.slTxImRejPhase, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChange(int)));
+    connect(ui.sbTxImRejPhase, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChange(int)));
+    connect(ui.sbTxImRejPhase, SIGNAL(valueChanged(int)),ui.slTxImRejPhase, SLOT(setValue(int)));
+    connect(ui.slTxImRejPhase, SIGNAL(valueChanged(int)),ui.sbTxImRejPhase, SLOT(setValue(int)));
+
+    connect(ui.slTxImRejMagCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeCw(int)));
+    connect(ui.sbTxImRejMagCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeCw(int)));
+    connect(ui.sbTxImRejMagCw, SIGNAL(valueChanged(int)),ui.slTxImRejMagCw, SLOT(setValue(int)));
+    connect(ui.slTxImRejMagCw, SIGNAL(valueChanged(int)),ui.sbTxImRejMagCw, SLOT(setValue(int)));
+
+    connect(ui.slTxImRejPhaseCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeCw(int)));
+    connect(ui.sbTxImRejPhaseCw, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeCw(int)));
+    connect(ui.sbTxImRejPhaseCw, SIGNAL(valueChanged(int)),ui.slTxImRejPhaseCw, SLOT(setValue(int)));
+    connect(ui.slTxImRejPhaseCw, SIGNAL(valueChanged(int)),ui.sbTxImRejPhaseCw, SLOT(setValue(int)));
+
+    connect(ui.slTxImRejMagAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeAmFm(int)));
+    connect(ui.sbTxImRejMagAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxGainChangeAmFm(int)));
+    connect(ui.sbTxImRejMagAmFm, SIGNAL(valueChanged(int)),ui.slTxImRejMagAmFm, SLOT(setValue(int)));
+    connect(ui.slTxImRejMagAmFm, SIGNAL(valueChanged(int)),ui.sbTxImRejMagAmFm, SLOT(setValue(int)));
+
+    connect(ui.slTxImRejPhaseAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeAmFm(int)));
+    connect(ui.sbTxImRejPhaseAmFm, SIGNAL(valueChanged(int)), this, SLOT(OnTxPhaseChangeAmFm(int)));
+    connect(ui.sbTxImRejPhaseAmFm, SIGNAL(valueChanged(int)),ui.slTxImRejPhaseAmFm, SLOT(setValue(int)));
+    connect(ui.slTxImRejPhaseAmFm, SIGNAL(valueChanged(int)),ui.sbTxImRejPhaseAmFm, SLOT(setValue(int)));
+
 	connect(ui.pbProg0, SIGNAL(clicked()), this, SLOT(OnProg0()));
 	connect(ui.pbProg1, SIGNAL(clicked()), this, SLOT(OnProg1()));
 	connect(ui.pbProg2, SIGNAL(clicked()), this, SLOT(OnProg2()));
