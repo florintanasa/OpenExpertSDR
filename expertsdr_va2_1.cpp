@@ -3924,6 +3924,7 @@ void ExpertSDR_vA2_1::OnChangeBand(int Mode)
         pGraph->pGl->SetDDSFreq(OptBands[CurrentBandIndex].MainFreq - FilterPosFreq);
         pSdrCtrl->SetDdsFreq(OptBands[CurrentBandIndex].MainFreq - FilterPosFreq);
         pSmeter->SetVHF(false);
+        MainFreqChange(OptBands[CurrentBandIndex].MainFreq);
     }
     pModeBut->button(OptBands[CurrentBandIndex].CurrentModeIndex)->setChecked(true);
     OnChangeMode(OptBands[CurrentBandIndex].CurrentModeIndex);
