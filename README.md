@@ -1,8 +1,11 @@
 # OpenExpertSDR
 
-git clone https://github.com/florintanasa/OpenExpertSDR
+Based on https://github.com/Tsukihime/OpenExpertSDR
 
-To compile use:
+
+To compile use (better read Wiki page https://github.com/florintanasa/OpenExpertSDR/wiki):
+
+git clone https://github.com/florintanasa/OpenExpertSDR
 
  QtCreator with qt5 or qt4 and for windows use mingw from http://www.mingw.org/ not from qt.
 
