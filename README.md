@@ -1,21 +1,47 @@
 # OpenExpertSDR
 
-Based on https://github.com/Tsukihime/OpenExpertSDR
+OpenExpertSDR is a software-defined radio (SDR) project Based on [https://github.com/Tsukihime/OpenExpertSDR](https://github.com/Tsukihime/OpenExpertSDR) that integrates with various SDR hardware, including Genesis G59/G11 and virtual serial port communication via `tty0tty`.
 
+## Prerequisites
 
-To compile use (better read Wiki page https://github.com/florintanasa/OpenExpertSDR/wiki):
+Before compiling, ensure you have the following installed:
 
+- Qt 5 or Qt 4
+- MinGW (for Windows) - [Download MinGW](http://www.mingw.org/)
+- CMake (for Qt5 builds)
+
+## Clone the Repository
+
+To get started, clone the repository:
+
+```bash
 git clone https://github.com/florintanasa/OpenExpertSDR
-
- QtCreator with qt5 or qt4 and for windows use mingw from http://www.mingw.org/ not from qt.
-
-Or from console after clone
-
 ```
+```
+
+## Compilation
+
+### Option 1: Using QtCreator
+
+1. Open `OpenExpertSDR` in QtCreator.
+2. Configure the project with Qt5 or Qt4.
+3. Set up MinGW (for Windows).
+
+### Option 2: Using the Command Line
+
+After cloning the repository, navigate to the project directory and use `qmake` or `cmake` to build the project.
+
+#### Using `qmake` (for Qt4 or Qt5)
+
+```bash
 cd OpenExpertSDR
 qmake *.pro
 make
-# or use cmake only for qt5
+```
+
+#### Using `cmake` (for Qt5)
+
+```bash
 cd OpenExpertSDR
 mkdir build
 cd build
@@ -23,50 +49,96 @@ cmake ..
 make
 ```
 
-For libDttSP.so use this link https://github.com/wd8rde/libDttSP
+## External Dependencies
 
-For who have SDR from Genesis G59 or G11 https://github.com/wd8rde/libExtio_genesis, then in OpenExpertSDR/build directory:
+### libDttSP
+
+For the `libDttSP.so` library, you can clone it from the following repository:
+
+```bash
+git clone https://github.com/wd8rde/libDttSP
 ```
+
+### libExtio_genesis
+
+If you're using SDR hardware from Genesis (G59 or G11), you will also need `libExtio_genesis`:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/wd8rde/libExtio_genesis
+```
+
+2. In the `OpenExpertSDR/build` directory, create a `device` directory and create a symbolic link to the `libextio_genesis.so` library:
+
+```bash
 cd OpenExpertSDR/build
 mkdir device
 cd device
 ln -s /usr/local/lib/libextio_genesis.so libextio_genesis.so
 ```
 
-I added posibility to load at list virtual serial port at qextserial tnt* to be used with CAT
+## Virtual Serial Port Support (CAT)
 
-Module was take it from here https://github.com/freemed/tty0tty
+The project includes support for virtual serial ports using the `qextserial` library (`tnt*`), which is required for CAT (Computer Aided Transceiver) functionality.
 
-To install:
+### Installation
 
+To set up `tty0tty` for virtual serial ports:
+
+1. Clone the `tty0tty` repository:
+
+```bash
 git clone https://github.com/freemed/tty0tty
+```
 
+2. Navigate to the `module` directory and compile the kernel module:
+
+```bash
 cd tty0tty/module
-
 make
+```
 
-sudo cp tty0tty.ko /lib/modules/your kernel/kernel/drivers/tty/serial/
+3. Install the kernel module:
 
+```bash
+sudo cp tty0tty.ko /lib/modules/your_kernel/kernel/drivers/tty/serial/
 sudo depmod -a
-
 sudo modprobe tty0tty
+```
 
-I create this file /lib/udev/rules.d/98-udev-tnt.rules with this rule
+4. Create a udev rule to manage the virtual serial ports:
 
-KERNEL=="tnt[0-9]*", GROUP="dialout"
+```bash
+sudo cp /lib/udev/rules.d/98-udev-tnt.rules /lib/udev/rules.d/
+```
 
-Add your user name at dialout group
+This rule ensures the proper group assignment for the virtual serial port (`tnt*`).
 
+5. Add your username to the `dialout` group:
+
+```bash
 sudo gpasswd -a user_name dialout
+```
 
-if group dialout not exist create with
+If the `dialout` group does not exist, create it with:
 
+```bash
 sudo groupadd dialout
+```
 
-Edit file /etc/modules and at the end add this line 
+6. To automatically load the `tty0tty` module at startup, edit the `/etc/modules` file and add:
 
+```
 tty0tty
+```
 
-Now modules is taken at every statup.
+## Testing
 
-For test I used this CoolTerm http://freeware.the-meiers.org/
+For testing virtual serial port communication, you can use the [CoolTerm](http://freeware.the-meiers.org/) terminal emulator.
+
+---
+
+This guide should help you get OpenExpertSDR running with support for Genesis SDR devices and virtual serial port communication.
+
+```
