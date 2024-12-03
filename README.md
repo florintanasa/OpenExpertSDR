@@ -141,4 +141,7 @@ For testing virtual serial port communication, you can use the [CoolTerm](http:/
 
 This guide should help you get OpenExpertSDR running with support for Genesis SDR devices and virtual serial port communication.
 
-```
+> **Note**:  
+> In [Wiki](https://github.com/florintanasa/OpenExpertSDR/wiki) pages exist details with many informations.  
+> Screen captures was lost because the site with this was closed.
+
